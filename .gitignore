@@ -9,6 +9,7 @@ target/
 .idea/compiler.xml
 .idea/libraries/
 src/main/resources/META-INF/persistence.xml
+src/main/resources/rebel.xml
 *.iws
 *.iml
 *.ipr

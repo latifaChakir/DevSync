@@ -11,6 +11,14 @@
   <component name="ChangeListManager">
     <list default="true" id="0438aab0-59ca-4920-9a4b-bac4589cfee9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/bean/Utilisateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/bean/Utilisateur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/UtilisateurDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/UtilisateurDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/UtilisateurService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/UtilisateurService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/rebel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/utilisateurs.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +57,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "JRebel Executor",
     "JBoss/WildFly Server.JBoss/WildFly 29.0.5.Final-redhat-000011.executor": "JRebel Executor",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -83,7 +92,20 @@
       <recent name="C:\Users\Youcode\Desktop\GestionTaches" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JBoss/WildFly Server.JBoss/WildFly 29.0.5.Final-redhat-000011">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.devSync.Main" />
+      <module name="DevSync" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.devSync.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="JBoss/WildFly 29.0.5.Final-redhat-000011" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 29.0.5.Final-redhat-000011" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/DevSync" />
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
@@ -188,6 +210,23 @@
         <option name="BuildArtifacts" enabled="false" />
       </method>
     </configuration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings />
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -209,11 +248,24 @@
       <workItem from="1727710375370" duration="2000000" />
       <workItem from="1727713375796" duration="11396000" />
       <workItem from="1727788601279" duration="2612000" />
-      <workItem from="1727791282432" duration="2855000" />
+      <workItem from="1727791282432" duration="9830000" />
+      <workItem from="1727808016225" duration="11309000" />
+      <workItem from="1727819360463" duration="3544000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

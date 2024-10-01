@@ -9,11 +9,12 @@ public class Utilisateur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "nom_utilisateur",nullable = false, unique = true)
     private String nomUtilisateur;
 
-    @Column(nullable = false)
+    @Column(name = "mot_de_passe" ,nullable = false)
     private String motDePasse;
+    @Column(nullable = false)
     private String nom;
     private String prenom;
 
@@ -23,6 +24,16 @@ public class Utilisateur {
     @ManyToOne
     @JoinColumn(name = "manager_id")
     private Utilisateur manager;
+
+    public Utilisateur(long l, String nom1, String email1) {
+        this.id = l;
+        this.nomUtilisateur = nom1;
+        this.email = email1;
+    }
+
+    public Utilisateur() {
+
+    }
 
 
     public Long getId() {

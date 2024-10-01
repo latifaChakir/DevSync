@@ -13,7 +13,7 @@ import java.util.Optional;
 public class UtilisateurDaoImpl implements UtilisateurDao {
     private EntityManagerFactory emf;
     private EntityManager entityManager;
-    public UtilisateurDaoImpl(EntityManagerFactory emf) {
+    public UtilisateurDaoImpl() {
         this.emf = Persistence.createEntityManagerFactory("devSync");
         this.entityManager = emf.createEntityManager();
     }
@@ -56,19 +56,24 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     @Override
     public List<Utilisateur> findAll() {
         EntityTransaction transaction = entityManager.getTransaction();
+        List<Utilisateur> utilisateurs = null;
         try {
             if (!transaction.isActive()) {
                 transaction.begin();
             }
-            List<Utilisateur> utilisateurs = entityManager.createQuery("SELECT u FROM Utilisateur u", Utilisateur.class).getResultList();
+            utilisateurs = entityManager.createQuery("SELECT u FROM Utilisateur u", Utilisateur.class).getResultList();
             transaction.commit();
-            return utilisateurs;
         } catch (Exception e) {
             if (transaction.isActive()) {
                 transaction.rollback();
             }
-            throw e;
+            throw e; // Relance l'exception pour qu'elle soit capturée dans doGet
+        } finally {
+            if (entityManager != null && entityManager.isOpen()) {
+                entityManager.close();
+            }
         }
+        return utilisateurs;
     }
 
     @Override

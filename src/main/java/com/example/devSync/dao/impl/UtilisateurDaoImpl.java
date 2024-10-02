@@ -71,7 +71,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(long id) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();

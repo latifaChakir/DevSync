@@ -9,6 +9,6 @@ public interface UtilisateurDao {
     public Optional<Utilisateur> findById(Long id);
     public List<Utilisateur> findAll();
     public Utilisateur update(Utilisateur utilisateur);
-    public void delete(int id);
+    public void delete(long id);
     public List<Utilisateur> findByName(String name);
 }

@@ -26,7 +26,7 @@ public class UtilisateurService {
         utilisateurDAO.update(utilisateur);
     }
 
-    public void deleteUtilisateur(int id) {
+    public void deleteUtilisateur(long id) {
         utilisateurDAO.delete(id);
     }
 }

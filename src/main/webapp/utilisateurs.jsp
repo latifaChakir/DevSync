@@ -33,10 +33,10 @@
                 <thead>
                 <tr>
                     <th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
+                        <span class="custom-checkbox">
+                            <input type="checkbox" id="selectAll">
+                            <label for="selectAll"></label>
+                        </span>
                     </th>
                     <th>id</th>
                     <th>Last Name</th>
@@ -59,9 +59,18 @@
                         <td><c:out value="${utilisateur.prenom}" /></td>
                         <td><c:out value="${utilisateur.email}" /></td>
                         <td>
-                            <a href="modifierUtilisateur?id=${utilisateur.id}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="supprimerUtilisateur?id=${utilisateur.id}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            <a href="utilisateurs?id=${utilisateur.id}&action=edit" class="edit" >
+                                <i class="material-icons"  title="Edit">&#xE254;</i>
+                            </a>
+                            <form action="utilisateurs?action=delete" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="${utilisateur.id}">
+                                <button type="submit" class="delete-button" style="background:none; border:none; color:inherit; padding:0; font: inherit; cursor: pointer;">
+                                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                </button>
+                            </form>
+
                         </td>
+
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -81,12 +90,12 @@
         </div>
     </div>
 </div>
-<div id="addEmployeeModal" class="modal fade">
-    <div class="modal-dialog">
+<div id="addEmployeeModal" class="modal fade bd-example-modal-lg">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <form action="" method="post">
+            <form action="utilisateurs?action=add" method="post">
                 <div class="modal-header">
-                    <h4 class="modal-title">Add Employee</h4>
+                    <h4 class="modal-title">Add User</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                     <div class="modal-body">
@@ -124,64 +133,10 @@
 
                     </div>
                 <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="button" class="btn btn-primary" data-dismiss="modal" value="Cancel">
                     <input type="submit" class="btn btn-success" value="Add">
                 </div>
 
-            </form>
-        </div>
-    </div>
-</div>
-<div id="editEmployeeModal" class="modal fade">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <form>
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit Employee</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Address</label>
-                        <textarea class="form-control" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-info" value="Save">
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div id="deleteEmployeeModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form>
-                <div class="modal-header">
-                    <h4 class="modal-title">Delete Employee</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to delete these Records?</p>
-                    <p class="text-warning"><small>This action cannot be undone.</small></p>
-                </div>
-                <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-danger" value="Delete">
-                </div>
             </form>
         </div>
     </div>

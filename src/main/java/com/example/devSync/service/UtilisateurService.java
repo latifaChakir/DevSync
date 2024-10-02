@@ -5,6 +5,7 @@ import com.example.devSync.dao.UtilisateurDao;
 import com.example.devSync.dao.impl.UtilisateurDaoImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UtilisateurService {
     private UtilisateurDao utilisateurDAO = new UtilisateurDaoImpl();
@@ -13,9 +14,9 @@ public class UtilisateurService {
         utilisateurDAO.save(utilisateur);
     }
 
-//    public Utilisateur getUtilisateur(Long id) {
-//        return utilisateurDAO.findById(id);
-//    }
+    public Optional<Utilisateur> getUtilisateur(Long id) {
+        return utilisateurDAO.findById(id);
+    }
 
     public List<Utilisateur> getAllUtilisateurs() {
         return utilisateurDAO.findAll();

@@ -13,17 +13,17 @@ import java.util.Optional;
 public class UtilisateurDaoImpl implements UtilisateurDao {
     private EntityManagerFactory emf;
     private EntityManager entityManager;
+
     public UtilisateurDaoImpl() {
         this.emf = Persistence.createEntityManagerFactory("devSync");
         this.entityManager = emf.createEntityManager();
     }
+
     @Override
-    public  Utilisateur save(Utilisateur utilisateur) {
+    public Utilisateur save(Utilisateur utilisateur) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
-            if (!transaction.isActive()) {
-                transaction.begin();
-            }
+            transaction.begin();
             entityManager.persist(utilisateur);
             transaction.commit();
         } catch (Exception e) {
@@ -36,53 +36,29 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     }
 
     @Override
-    public Optional<Utilisateur> findById(int id) {
-        EntityTransaction transaction = entityManager.getTransaction();
+    public Optional<Utilisateur> findById(Long id) {
         try {
-            if (!transaction.isActive()) {
-                transaction.begin();
-            }
             Utilisateur utilisateur = entityManager.find(Utilisateur.class, id);
-            transaction.commit();
             return Optional.ofNullable(utilisateur);
         } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
             throw e;
         }
     }
 
     @Override
     public List<Utilisateur> findAll() {
-        EntityTransaction transaction = entityManager.getTransaction();
-        List<Utilisateur> utilisateurs = null;
         try {
-            if (!transaction.isActive()) {
-                transaction.begin();
-            }
-            utilisateurs = entityManager.createQuery("SELECT u FROM Utilisateur u", Utilisateur.class).getResultList();
-            transaction.commit();
+            return entityManager.createQuery("SELECT u FROM Utilisateur u", Utilisateur.class).getResultList();
         } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            throw e; // Relance l'exception pour qu'elle soit capturée dans doGet
-        } finally {
-            if (entityManager != null && entityManager.isOpen()) {
-                entityManager.close();
-            }
+            throw e;
         }
-        return utilisateurs;
     }
 
     @Override
     public Utilisateur update(Utilisateur utilisateur) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
-            if (!transaction.isActive()) {
-                transaction.begin();
-            }
+            transaction.begin();
             Utilisateur updatedUtilisateur = entityManager.merge(utilisateur);
             transaction.commit();
             return updatedUtilisateur;
@@ -91,19 +67,17 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
                 transaction.rollback();
             }
             throw e;
-        }    }
+        }
+    }
 
     @Override
     public void delete(int id) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
-            if (!transaction.isActive()) {
-                transaction.begin();
-            }
+            transaction.begin();
             Utilisateur utilisateur = entityManager.find(Utilisateur.class, id);
             if (utilisateur != null) {
                 entityManager.remove(utilisateur);
-                transaction.commit();
             }
             transaction.commit();
         } catch (Exception e) {
@@ -116,6 +90,21 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 
     @Override
     public List<Utilisateur> findByName(String name) {
-        return List.of();
+        try {
+            return entityManager.createQuery("SELECT u FROM Utilisateur u WHERE u.nom = :name", Utilisateur.class)
+                    .setParameter("name", name)
+                    .getResultList();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void close() {
+        if (entityManager != null && entityManager.isOpen()) {
+            entityManager.close();
+        }
+        if (emf != null && emf.isOpen()) {
+            emf.close();
+        }
     }
 }

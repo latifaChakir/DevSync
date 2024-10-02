@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface UtilisateurDao {
     public Utilisateur save(Utilisateur utilisateur);
-    public Optional<Utilisateur> findById(int id);
+    public Optional<Utilisateur> findById(Long id);
     public List<Utilisateur> findAll();
     public Utilisateur update(Utilisateur utilisateur);
     public void delete(int id);

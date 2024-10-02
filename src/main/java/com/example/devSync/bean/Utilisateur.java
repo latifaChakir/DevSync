@@ -9,7 +9,7 @@ public class Utilisateur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nom_utilisateur",nullable = false, unique = true)
+    @Column(name = "nom_utilisateur",nullable = true, unique = true)
     private String nomUtilisateur;
 
     @Column(name = "mot_de_passe" ,nullable = false)
@@ -91,4 +91,6 @@ public class Utilisateur {
     public void setManager(Utilisateur manager) {
         this.manager = manager;
     }
+
+
 }

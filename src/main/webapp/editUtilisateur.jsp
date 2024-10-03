@@ -51,16 +51,9 @@
                     </div>
                     <div class="form-group">
                         <label>Manager</label>
-                        <select name="manager_id" class="form-control">
-                            <c:forEach var="user" items="${utilisateursList}">
-                                <option value="${user.id}"
-                                        <c:if test="${user.id == utilisateur.manager.id}">
-                                            selected
-                                        </c:if>
-                                >
-                                    <c:out value="${user.nom} ${user.prenom}" />
-                                </option>
-                            </c:forEach>
+                        <select name="role" class="form-control">
+                            <option value="ADMIN" ${utilisateur.role.name() == 'ADMIN' ? 'selected' : ''}>Admin</option>
+                            <option value="USER" ${utilisateur.role.name() == 'USER' ? 'selected' : ''}>User</option>
                         </select>
                     </div>
 

@@ -1,6 +1,7 @@
 package com.example.devSync.webService;
 
 import com.example.devSync.bean.Utilisateur;
+import com.example.devSync.bean.enums.Role;
 import com.example.devSync.service.UtilisateurService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,11 +21,9 @@ public class UtilisateurWebService extends HttpServlet {
         String action = request.getParameter("action");
         try {
             if ("edit".equals(action)) {
-                List<Utilisateur> utilisateursList = utilisateurService.getAllUtilisateurs();
                 Long utilisateurId = Long.valueOf(request.getParameter("id"));
                 Utilisateur utilisateur = utilisateurService.getUtilisateur(utilisateurId).orElse(null);
                 if (utilisateur != null) {
-                    request.setAttribute("utilisateursList", utilisateursList);
                     request.setAttribute("utilisateur", utilisateur);
                     request.getRequestDispatcher("/editUtilisateur.jsp").forward(request, response);
                 } else {
@@ -52,7 +51,7 @@ public class UtilisateurWebService extends HttpServlet {
                 String email = req.getParameter("email");
                 String nomUtilisateur = req.getParameter("nom_utilisateur");
                 String motDePasse = req.getParameter("mot_de_passe");
-                long managerId = Long.parseLong(req.getParameter("manager_id"));
+                Role role = Role.valueOf(req.getParameter("role"));
 
                 Utilisateur utilisateur = new Utilisateur();
                 utilisateur.setPrenom(prenom);
@@ -60,8 +59,7 @@ public class UtilisateurWebService extends HttpServlet {
                 utilisateur.setEmail(email);
                 utilisateur.setNomUtilisateur(nomUtilisateur);
                 utilisateur.setMotDePasse(motDePasse);
-                Utilisateur manager = utilisateurService.getUtilisateur(managerId).orElse(null);
-                utilisateur.setManager(manager);
+                utilisateur.setRole(role);
 
                 utilisateurService.createUtilisateur(utilisateur);
 
@@ -72,15 +70,14 @@ public class UtilisateurWebService extends HttpServlet {
                 String email = req.getParameter("email");
                 String nomUtilisateur = req.getParameter("nom_utilisateur");
                 String motDePasse = req.getParameter("mot_de_passe");
-                long managerId = Long.parseLong(req.getParameter("manager_id"));
+                Role role = Role.valueOf(req.getParameter("role"));
                 Utilisateur utilisateur = utilisateurService.getUtilisateur(userId).orElseThrow(() -> new Exception("Utilisateur non trouvé"));
                 utilisateur.setPrenom(prenom);
                 utilisateur.setNom(nom);
                 utilisateur.setEmail(email);
                 utilisateur.setNomUtilisateur(nomUtilisateur);
                 utilisateur.setMotDePasse(motDePasse);
-                Utilisateur manager = utilisateurService.getUtilisateur(managerId).orElse(null);
-                utilisateur.setManager(manager);
+                utilisateur.setRole(role);
                 utilisateurService.updateUtilisateur(utilisateur);
 
 

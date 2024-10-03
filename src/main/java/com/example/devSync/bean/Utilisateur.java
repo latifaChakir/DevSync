@@ -1,5 +1,6 @@
 package com.example.devSync.bean;
 
+import com.example.devSync.bean.enums.Role;
 import jakarta.persistence.*;
 
 @Entity
@@ -21,9 +22,8 @@ public class Utilisateur {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "manager_id")
-    private Utilisateur manager;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public Utilisateur(long l, String nom1, String email1) {
         this.id = l;
@@ -84,13 +84,11 @@ public class Utilisateur {
         this.email = email;
     }
 
-    public Utilisateur getManager() {
-        return manager;
+    public Role getRole() {
+        return role;
     }
 
-    public void setManager(Utilisateur manager) {
-        this.manager = manager;
+    public void setRole(Role role) {
+        this.role = role;
     }
-
-
 }

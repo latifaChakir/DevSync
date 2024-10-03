@@ -42,6 +42,7 @@
                     <th>Last Name</th>
                     <th>First Name</th>
                     <th>Email</th>
+                    <th>Role</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -58,6 +59,7 @@
                         <td><c:out value="${utilisateur.nom}" /></td>
                         <td><c:out value="${utilisateur.prenom}" /></td>
                         <td><c:out value="${utilisateur.email}" /></td>
+                        <td><c:out value="${utilisateur.role.name()}" /></td>
                         <td>
                             <a href="utilisateurs?id=${utilisateur.id}&action=edit" class="edit" >
                                 <i class="material-icons"  title="Edit">&#xE254;</i>
@@ -121,13 +123,10 @@
                             <input type="password" name="mot_de_passe" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Manager</label>
-                            <select name="manager_id" id="" class="form-control">
-                                <c:forEach var="utilisateur" items="${utilisateursList}">
-                                    <option value="${utilisateur.id}">
-                                        <c:out value="${utilisateur.nom} ${utilisateur.prenom}" />
-                                    </option>
-                                </c:forEach>
+                            <label>Role</label>
+                            <select name="role" id="role" class="form-control">
+                                <option value="USER">User</option>
+                                <option value="MANAGER">Manager</option>
                             </select>
                         </div>
 

@@ -1,9 +1,8 @@
 package com.example.devSync.service;
-
 import com.example.devSync.bean.Utilisateur;
 import com.example.devSync.dao.UtilisateurDao;
 import com.example.devSync.dao.impl.UtilisateurDaoImpl;
-
+import org.mindrot.jbcrypt.BCrypt;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,5 +27,9 @@ public class UtilisateurService {
 
     public void deleteUtilisateur(long id) {
         utilisateurDAO.delete(id);
+    }
+
+    public String hashPassword(String plainPassword) {
+        return BCrypt.hashpw(plainPassword, BCrypt.gensalt(12));
     }
 }

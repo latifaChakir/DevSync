@@ -52,7 +52,7 @@
                     <div class="form-group">
                         <label>Manager</label>
                         <select name="role" class="form-control">
-                            <option value="ADMIN" ${utilisateur.role.name() == 'ADMIN' ? 'selected' : ''}>Admin</option>
+                            <option value="MANAGER" ${utilisateur.role.name() == 'MANAGER' ? 'selected' : ''}>MANAGER</option>
                             <option value="USER" ${utilisateur.role.name() == 'USER' ? 'selected' : ''}>User</option>
                         </select>
                     </div>

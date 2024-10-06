@@ -47,7 +47,7 @@
 
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" name="mot_de_passe" class="form-control" required>
+                        <input type="password" name="mot_de_passe" class="form-control" placeholder="Enter new password (leave blank to keep current)">
                     </div>
                     <div class="form-group">
                         <label>Manager</label>

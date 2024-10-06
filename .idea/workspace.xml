@@ -11,10 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0438aab0-59ca-4920-9a4b-bac4589cfee9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/HelloServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/UtilisateurService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/UtilisateurService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/UtilisateurDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/UtilisateurDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/UtilisateurWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/UtilisateurWebService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/editUtilisateur.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/editUtilisateur.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +71,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -242,7 +241,10 @@
       <workItem from="1727808016225" duration="11309000" />
       <workItem from="1727819360463" duration="29133000" />
       <workItem from="1727946345605" duration="8900000" />
-      <workItem from="1728034907439" duration="256000" />
+      <workItem from="1728034907439" duration="5378000" />
+      <workItem from="1728055969379" duration="1300000" />
+      <workItem from="1728137244006" duration="4929000" />
+      <workItem from="1728170391960" duration="3237000" />
     </task>
     <servers />
   </component>
@@ -265,7 +267,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/UtilisateurDaoImpl.java</url>
-          <line>48</line>
+          <line>46</line>
           <properties class="com.example.devSync.dao.impl.UtilisateurDaoImpl" method="findAll">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

@@ -10,99 +10,95 @@ import jakarta.persistence.Persistence;
 import java.util.List;
 import java.util.Optional;
 
-public class UtilisateurDaoImpl implements UtilisateurDao {
-    private EntityManagerFactory emf;
-    private EntityManager entityManager;
+public class UtilisateurDaoImpl implements UtilisateurDao, AutoCloseable {
+    private final EntityManagerFactory emf;
 
     public UtilisateurDaoImpl() {
         this.emf = Persistence.createEntityManagerFactory("devSync");
-        this.entityManager = emf.createEntityManager();
     }
 
     @Override
     public Utilisateur save(Utilisateur utilisateur) {
-        EntityTransaction transaction = entityManager.getTransaction();
-        try {
-            transaction.begin();
-            entityManager.persist(utilisateur);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
+        try (EntityManager entityManager = emf.createEntityManager()) {
+            EntityTransaction transaction = entityManager.getTransaction();
+            try {
+                transaction.begin();
+                entityManager.persist(utilisateur);
+                transaction.commit();
+            } catch (Exception e) {
+                if (transaction.isActive()) {
+                    transaction.rollback();
+                }
+                throw e;
             }
-            throw e;
+            return utilisateur;
         }
-        return utilisateur;
     }
 
     @Override
     public Optional<Utilisateur> findById(Long id) {
-        try {
+        try (EntityManager entityManager = emf.createEntityManager()) {
             Utilisateur utilisateur = entityManager.find(Utilisateur.class, id);
             return Optional.ofNullable(utilisateur);
-        } catch (Exception e) {
-            throw e;
         }
     }
 
     @Override
     public List<Utilisateur> findAll() {
-        try {
+        try (EntityManager entityManager = emf.createEntityManager()) {
             return entityManager.createQuery("SELECT u FROM Utilisateur u", Utilisateur.class).getResultList();
-        } catch (Exception e) {
-            throw e;
         }
     }
 
     @Override
     public Utilisateur update(Utilisateur utilisateur) {
-        EntityTransaction transaction = entityManager.getTransaction();
-        try {
-            transaction.begin();
-            Utilisateur updatedUtilisateur = entityManager.merge(utilisateur);
-            transaction.commit();
-            return updatedUtilisateur;
-        } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
+        try (EntityManager entityManager = emf.createEntityManager()) {
+            EntityTransaction transaction = entityManager.getTransaction();
+            try {
+                transaction.begin();
+                Utilisateur updatedUtilisateur = entityManager.merge(utilisateur);
+                transaction.commit();
+                return updatedUtilisateur;
+            } catch (Exception e) {
+                if (transaction.isActive()) {
+                    transaction.rollback();
+                }
+                throw e;
             }
-            throw e;
         }
     }
 
     @Override
     public void delete(long id) {
-        EntityTransaction transaction = entityManager.getTransaction();
-        try {
-            transaction.begin();
-            Utilisateur utilisateur = entityManager.find(Utilisateur.class, id);
-            if (utilisateur != null) {
-                entityManager.remove(utilisateur);
+        try (EntityManager entityManager = emf.createEntityManager()) {
+            EntityTransaction transaction = entityManager.getTransaction();
+            try {
+                transaction.begin();
+                Utilisateur utilisateur = entityManager.find(Utilisateur.class, id);
+                if (utilisateur != null) {
+                    entityManager.remove(utilisateur);
+                }
+                transaction.commit();
+            } catch (Exception e) {
+                if (transaction.isActive()) {
+                    transaction.rollback();
+                }
+                throw e;
             }
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            throw e;
         }
     }
 
     @Override
     public List<Utilisateur> findByName(String name) {
-        try {
+        try (EntityManager entityManager = emf.createEntityManager()) {
             return entityManager.createQuery("SELECT u FROM Utilisateur u WHERE u.nom = :name", Utilisateur.class)
                     .setParameter("name", name)
                     .getResultList();
-        } catch (Exception e) {
-            throw e;
         }
     }
 
+    @Override
     public void close() {
-        if (entityManager != null && entityManager.isOpen()) {
-            entityManager.close();
-        }
         if (emf != null && emf.isOpen()) {
             emf.close();
         }

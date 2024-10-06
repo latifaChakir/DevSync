@@ -77,8 +77,11 @@ public class UtilisateurWebService extends HttpServlet {
                 utilisateur.setNom(nom);
                 utilisateur.setEmail(email);
                 utilisateur.setNomUtilisateur(nomUtilisateur);
-                String hashedPassword = utilisateurService.hashPassword(motDePasse);
-                utilisateur.setMotDePasse(hashedPassword);                utilisateur.setRole(role);
+                if (motDePasse != null && !motDePasse.trim().isEmpty()) {
+                    String hashedPassword = utilisateurService.hashPassword(motDePasse);
+                    utilisateur.setMotDePasse(hashedPassword);
+                }
+                utilisateur.setRole(role);
                 utilisateurService.updateUtilisateur(utilisateur);
 
 

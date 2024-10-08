@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,9 +16,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Task {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
 
     private String description;
@@ -30,9 +31,20 @@ public class Task {
     @FutureOrPresent(message = "Deadline must be in the future or present.")
     private LocalDateTime deadLine;
 
-    private LocalDate created_at;
+    private LocalDateTime createdAt;
 
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
+
+    private LocalDateTime deletedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "created_by", nullable = false)
+    private Utilisateur createdBy;
+
+    @ManyToOne
+    @JoinColumn(name = "assigned_to", nullable = false)
+    private Utilisateur assignedTo;
+
     @ManyToMany
     @JoinTable(
             name = "tasks_tags",
@@ -41,3 +53,4 @@ public class Task {
     )
     private List<Tag> tags;
 }
+

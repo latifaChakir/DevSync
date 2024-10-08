@@ -17,6 +17,10 @@ import java.util.List;
 public class UtilisateurWebService extends HttpServlet {
     UtilisateurService utilisateurService=new UtilisateurService();
     @Override
+    public void init() throws ServletException {
+        System.out.println("Servlet initialisée.");
+    }
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         try {
@@ -96,5 +100,10 @@ public class UtilisateurWebService extends HttpServlet {
             res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             res.getWriter().write("Une erreur s'est produite : " + e.getMessage());
         }
+    }
+
+    @Override
+    public void destroy() {
+        System.out.println("Servlet détruite.");
     }
 }

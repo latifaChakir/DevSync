@@ -26,4 +26,11 @@ public class TaskService {
     public List<Task> getAllTasks() {
         return taskDao.findAll();
     }
+    public List <Task> getTasksByCreator (Long taskId) {
+        return taskDao.getTasksByCreatorId(taskId);
+    }
+    public List <Task> getTasksByAssigned (Long taskId) {
+
+        return taskDao.getTasksByAssigneeId(taskId);
+    }
 }

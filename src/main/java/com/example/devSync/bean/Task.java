@@ -41,11 +41,11 @@ public class Task {
     @JoinColumn(name = "created_by", nullable = false)
     private Utilisateur createdBy;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "assigned_to", nullable = false)
     private Utilisateur assignedTo;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "tasks_tags",
             joinColumns = @JoinColumn(name = "task_id"),

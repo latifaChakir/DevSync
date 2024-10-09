@@ -32,4 +32,22 @@
     <url-pattern>/tags?action=getAll</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>TaskWebService</servlet-name>
+    <servlet-class>com.example.devSync.webService.TaskWebService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TaskWebService</servlet-name>
+    <url-pattern>/tasks</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ProfileWebService</servlet-name>
+    <servlet-class>com.example.devSync.webService.ProfileWebService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfileWebService</servlet-name>
+    <url-pattern>/profil</url-pattern>
+  </servlet-mapping>
+
 </web-app>

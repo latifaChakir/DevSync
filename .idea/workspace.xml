@@ -11,8 +11,16 @@
   <component name="ChangeListManager">
     <list default="true" id="0438aab0-59ca-4920-9a4b-bac4589cfee9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/UtilisateurWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/UtilisateurWebService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/bean/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/bean/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/TaskDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/TaskDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/TaskDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/TaskDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TaskService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/TaskWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/TaskWebService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/Task/editTask.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/Task/editTask.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/Task/tasks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/Task/tasks.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +35,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -56,6 +64,7 @@
     "Application.Main.executor": "JRebel Executor",
     "JBoss/WildFly Server.JBoss/WildFly 29.0.5.Final-redhat-000011.executor": "JRebel Executor",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.DevSync [install].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "part2",
@@ -210,6 +219,20 @@
         <option name="BuildArtifacts" enabled="false" />
       </method>
     </configuration>
+    <configuration default="true" type="JBossConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings>
+        <option name="SERVER" value="" />
+        <option name="BINDING_SET_NAME" value="" />
+        <option name="DOMAIN" value="false" />
+        <option name="SERVER_GROUP" value="" />
+        <option name="USERNAME" value="" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="JBoss" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="JBoss/WildFly Server.JBoss/WildFly 29.0.5.Final-redhat-000011" />
@@ -253,7 +276,7 @@
       <workItem from="1728255621134" duration="177000" />
       <workItem from="1728288727663" duration="7267000" />
       <workItem from="1728376630411" duration="10339000" />
-      <workItem from="1728401085274" duration="20123000" />
+      <workItem from="1728401085274" duration="39564000" />
     </task>
     <servers />
   </component>

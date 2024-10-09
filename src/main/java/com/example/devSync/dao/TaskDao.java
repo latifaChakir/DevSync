@@ -12,4 +12,6 @@ public interface TaskDao {
     public Task update(Task task);
     public void delete(long id);
     public List<Task> findByName(String name);
+    public List<Task> getTasksByAssigneeId(Long id);
+    public List<Task> getTasksByCreatorId(Long id);
 }

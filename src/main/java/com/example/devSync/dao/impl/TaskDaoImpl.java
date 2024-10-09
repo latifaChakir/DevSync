@@ -2,17 +2,21 @@ package com.example.devSync.dao.impl;
 
 import com.example.devSync.bean.Task;
 import com.example.devSync.bean.Tag;
+import com.example.devSync.bean.Utilisateur;
 import com.example.devSync.dao.TaskDao;
+import com.example.devSync.dao.UtilisateurDao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class TaskDaoImpl implements TaskDao, AutoCloseable {
     private final EntityManagerFactory emf;
+    private UtilisateurDao utilisateurDao=new UtilisateurDaoImpl();
 
     public TaskDaoImpl() {
         this.emf = Persistence.createEntityManagerFactory("devSync");
@@ -100,6 +104,66 @@ public class TaskDaoImpl implements TaskDao, AutoCloseable {
         }
     }
 
+    @Override
+    public List<Task> getTasksByAssigneeId(Long userId) {
+        List<Task> tasks = new ArrayList<>();
+        try (EntityManager entityManager = emf.createEntityManager()) {
+            EntityTransaction transaction = entityManager.getTransaction();
+            transaction.begin();
+
+            try {
+                Utilisateur assignedUser = utilisateurDao.findById(userId).orElse(null);
+
+                if (assignedUser != null) {
+                    tasks = entityManager.createQuery("SELECT t FROM Task t WHERE t.assignedTo = :assignedTo", Task.class)
+                            .setParameter("assignedTo", assignedUser)
+                            .getResultList();
+
+                }
+                transaction.commit();
+            } catch (Exception e) {
+                if (transaction.isActive()) {
+                    transaction.rollback();
+                }
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tasks;
+    }
+
+
+    @Override
+    public List<Task> getTasksByCreatorId(Long userId) {
+        List<Task> tasks = new ArrayList<>();
+        try (EntityManager entityManager = emf.createEntityManager()) {
+            EntityTransaction transaction = entityManager.getTransaction();
+            transaction.begin();
+
+            try {
+                Utilisateur cretatedUser = utilisateurDao.findById(userId).orElse(null);
+
+                if (cretatedUser != null) {
+                    tasks = entityManager.createQuery("SELECT t FROM Task t WHERE t.createdBy = :createBy", Task.class)
+                            .setParameter("createBy", cretatedUser)
+                            .getResultList();
+
+                }
+                transaction.commit();
+            } catch (Exception e) {
+                if (transaction.isActive()) {
+                    transaction.rollback();
+                }
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tasks;
+    }
+
+
     private void updateTasksTags(Task task, EntityManager entityManager) {
         if (task.getTags() != null) {
             for (int i = 0; i < task.getTags().size(); i++) {
@@ -112,6 +176,8 @@ public class TaskDaoImpl implements TaskDao, AutoCloseable {
             }
         }
     }
+
+
 
     @Override
     public void close() throws Exception {

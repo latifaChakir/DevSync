@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,7 +35,10 @@ public class UtilisateurWebService extends HttpServlet {
                     response.sendError(HttpServletResponse.SC_NOT_FOUND, "Utilisateur non trouvé");
                 }
             } else {
+                HttpSession session = request.getSession();
+                Utilisateur currentUser = (Utilisateur) session.getAttribute("currentUser");
                 List<Utilisateur> utilisateursList = utilisateurService.getAllUtilisateurs();
+                request.setAttribute("currentUser", currentUser);
                 request.setAttribute("utilisateursList", utilisateursList);
                 request.getRequestDispatcher("/utilisateurs.jsp").forward(request, response);
             }

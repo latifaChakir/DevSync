@@ -11,11 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0438aab0-59ca-4920-9a4b-bac4589cfee9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/UtilisateurDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/UtilisateurDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/UtilisateurDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/UtilisateurDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/UtilisateurService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/UtilisateurService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/UtilisateurWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/UtilisateurWebService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,8 +27,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -90,6 +86,10 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Youcode\Desktop\DevSync\src\main" />
       <recent name="C:\Users\Youcode\Desktop\GestionTaches" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Youcode\Desktop\DevSync\src\main\webapp\views\Task" />
+      <recent name="C:\Users\Youcode\Desktop\DevSync\src\main\webapp\views\Tag" />
     </key>
   </component>
   <component name="RunManager" selected="JBoss/WildFly Server.JBoss/WildFly 29.0.5.Final-redhat-000011">
@@ -253,7 +253,7 @@
       <workItem from="1728255621134" duration="177000" />
       <workItem from="1728288727663" duration="7267000" />
       <workItem from="1728376630411" duration="10339000" />
-      <workItem from="1728401085274" duration="15506000" />
+      <workItem from="1728401085274" duration="20123000" />
     </task>
     <servers />
   </component>
@@ -290,7 +290,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/devSync/webService/UtilisateurWebService.java</url>
-          <line>48</line>
+          <line>52</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

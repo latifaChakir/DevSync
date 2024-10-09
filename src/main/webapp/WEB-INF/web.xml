@@ -23,4 +23,13 @@
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>TagWebService</servlet-name>
+    <servlet-class>com.example.devSync.webService.TagWebService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TagWebService</servlet-name>
+    <url-pattern>/tags?action=getAll</url-pattern>
+  </servlet-mapping>
+
 </web-app>

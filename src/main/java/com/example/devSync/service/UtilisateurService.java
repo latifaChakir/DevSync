@@ -32,4 +32,13 @@ public class UtilisateurService {
     public String hashPassword(String plainPassword) {
         return BCrypt.hashpw(plainPassword, BCrypt.gensalt(12));
     }
+    public Utilisateur login(String username, String password) {
+        Utilisateur u= utilisateurDAO.findByUsername(username);
+            if (u !=null && BCrypt.checkpw(password, u.getMotDePasse())) {
+                return u;
+            }
+        return null;
+    }
+
+
 }

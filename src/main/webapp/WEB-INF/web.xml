@@ -14,5 +14,13 @@
     <servlet-name>UtilisateurWebService</servlet-name>
     <url-pattern>/utilisateurs</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>LoginWebService</servlet-name>
+    <servlet-class>com.example.devSync.webService.LoginWebService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginWebService</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
 
 </web-app>

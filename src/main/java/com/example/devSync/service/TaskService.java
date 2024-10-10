@@ -2,6 +2,7 @@ package com.example.devSync.service;
 
 import com.example.devSync.bean.Tag;
 import com.example.devSync.bean.Task;
+import com.example.devSync.bean.enums.Status;
 import com.example.devSync.dao.TagDao;
 import com.example.devSync.dao.TaskDao;
 import com.example.devSync.dao.impl.TaskDaoImpl;
@@ -32,5 +33,14 @@ public class TaskService {
     public List <Task> getTasksByAssigned (Long taskId) {
 
         return taskDao.getTasksByAssigneeId(taskId);
+    }
+
+    public void  changeStatus(long taskId, Status status) {
+        Task task = getTaskById(taskId);
+        if (task!= null) {
+            task.setStatus(status);
+            updateTask(task);
+        }
+
     }
 }

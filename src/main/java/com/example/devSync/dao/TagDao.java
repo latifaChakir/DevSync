@@ -1,6 +1,7 @@
 package com.example.devSync.dao;
 
 import com.example.devSync.bean.Tag;
+import com.example.devSync.bean.enums.Status;
 
 import java.util.List;
 import java.util.Optional;

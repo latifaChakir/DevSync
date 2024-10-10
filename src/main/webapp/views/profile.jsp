@@ -22,7 +22,7 @@
 <body>
 <div class="container mb-4 main-container">
     <div class="row">
-        <div class="col-lg-4 pb-5">
+        <div class="col-lg-4 " style="padding-left: 0px !important;">
             <!-- Account Sidebar-->
             <div class="author-card pb-3">
                 <div class="author-card-cover" style="background-image: url(https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward points to spend"><i class="fa fa-award text-md"></i>&nbsp;290 points</a></div>
@@ -43,10 +43,10 @@
                             </div><span class="badge badge-secondary">6</span>
                         </div>
                     </a><a class="list-group-item" href="https://www.bootdey.com/snippets/view/bs4-profile-settings-page" target="__blank"><i class="fa fa-user text-muted"></i>Profile Settings</a><a class="list-group-item" href="#"><i class="fa fa-map-marker text-muted"></i>Addresses</a>
-                    <a class="list-group-item" href="https://www.bootdey.com/snippets/view/bs4-wishlist-profile-page" tagert="__blank">
+                    <a class="list-group-item" href="/DevSync/tasks" tagert="__blank">
                         <div class="d-flex justify-content-between align-items-center">
                             <div><i class="fa fa-heart mr-1 text-muted"></i>
-                                <div class="d-inline-block font-weight-medium text-uppercase">My Wishlist</div>
+                                <div class="d-inline-block font-weight-medium text-uppercase">Manage Tasks</div>
                             </div><span class="badge badge-secondary">3</span>
                         </div>
                     </a>
@@ -60,9 +60,10 @@
                 </nav>
             </div>
         </div>
-        <div class="col-lg-8 pb-5">
+        <div class="col-lg-8 pb-5 " style="padding-left: 0px !important;">
+            <h4>Tasks Assigned To Me :</h4>
             <div class="table-responsive">
-                <table class="table table-hover mb-0">
+                <table class="table table-hover mb-0 mt-4">
                     <thead>
                     <tr>
                         <th>Task</th>
@@ -76,8 +77,37 @@
                             <tr>
                             <td><c:out value="${task.title}" /></td>
                             <td><c:out value="${task.description}" /></td>
-                            <td><span class="badge badge-success m-0"><c:out value="${task.status}" /></span></td>
-                            <td><c:out value="${task.deadLine}" /></td>
+                                <td>
+                                    <form action="tasks?action=changeStatus" method="post" style="display: inline;">
+                                        <input type="hidden" name="id" value="${task.id}" />
+                                        <div class="d-flex ">
+                                        <select name="status" class="badge m-0 form-control select-status
+                                            <c:if test="${task.status == 'A_FAIRE'}">A_FAIRE</c:if>
+                                            <c:if test="${task.status == 'EN_COURS'}">EN_COURS</c:if>
+                                            <c:if test="${task.status == 'TERMINEE'}">TERMINEE</c:if>">
+                                            <option value="A_FAIRE"  <c:if test="${task.status == 'A_FAIRE'}">selected</c:if>>A_FAIRE</option>
+                                            <option value="EN_COURS" <c:if test="${task.status == 'EN_COURS'}">selected</c:if>>EN_COURS</option>
+                                            <option value="TERMINEE" <c:if test="${task.status == 'TERMINEE'}">selected</c:if>>TERMINEE</option>
+                                        </select>
+                                        <button type="submit" style="border: none"><i class="material-icons" data-toggle="tooltip" title="Soumettre" style="color: green;">check</i>
+
+                                        </button>
+                                        </div>
+                                    </form>
+                                </td>
+
+                                <td><c:out value="${task.deadLine}" /></td>
+                                <c:if test="${!currentUser.getId().equals(task.createdBy.getId())}">
+                                    <td>
+                                        <a href="tasks?id=${task.id}&action=remplacer" class="edit">
+                                            <i class="material-icons" data-toggle="tooltip" title="Remplacer">swap_horiz</i>
+                                        </a>
+                                        <a href="tasks?id=${task.id}&action=supprimer" class="delete">
+                                            <i class="material-icons" data-toggle="tooltip" title="Supprimer" style="color: darkred">&#xE872;</i>
+                                        </a>
+                                    </td>
+                                </c:if>
+
                             </tr>
                         </c:forEach>
 
@@ -256,5 +286,24 @@
         background-color: #fff;
         border: 1px solid rgba(0,0,0,0.125);
     }
+    .select-status {
+        padding: 5px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+    }
+
+    .select-status.A_FAIRE {
+        background-color: #ffc107; /* Jaune pour "A_FAIRE" */
+    }
+
+    .select-status.EN_COURS {
+        background-color: #17a2b8; /* Bleu pour "EN_COURS" */
+    }
+
+    .select-status.TERMINEE {
+        background-color: #28a745; /* Vert pour "TERMINEE" */
+    }
+
 </style>
 </html>

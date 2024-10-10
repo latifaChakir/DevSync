@@ -124,14 +124,16 @@
                         <input type="datetime-local" class="form-control" name="deadLine" required>
                     </div>
 
-                    <div class="form-group">
-                        <label>Assigned To</label>
-                        <select name="assignedTo" class="form-control" required>
-                            <c:forEach var="user" items="${utilisateurList}">
-                                <option value="${user.id}">${user.nom} ${user.prenom}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
+                    <c:if test="${role == 'MANAGER'}">
+                        <div class="form-group">
+                            <label>Assigned To</label>
+                            <select name="assignedTo" class="form-control" required>
+                                <c:forEach var="user" items="${utilisateurList}">
+                                    <option value="${user.id}">${user.nom} ${user.prenom}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </c:if>
                     <div class="form-group">
                         <label>Tags</label>
                         <select  class="form-control js-example-basic-multiple "  name="tags" multiple="multiple" data-placeholder="Choose tags" style="width: 100%">

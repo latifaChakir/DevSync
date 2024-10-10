@@ -26,7 +26,7 @@ public class UserToken {
     private String tokenType;
 
     @Column(name = "token_count", nullable = false)
-    private int tokenCount;
+    private int tokenCount = 2;
 
     @Column(name = "last_reset", nullable = false)
     private LocalDate lastReset;

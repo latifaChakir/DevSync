@@ -3,6 +3,7 @@ package com.example.devSync.webService;
 import com.example.devSync.bean.Tag;
 import com.example.devSync.bean.Task;
 import com.example.devSync.bean.Utilisateur;
+import com.example.devSync.bean.enums.Role;
 import com.example.devSync.bean.enums.Status;
 import com.example.devSync.service.TagService;
 import com.example.devSync.service.TaskService;
@@ -47,6 +48,7 @@ public class TaskWebService extends HttpServlet {
                     List<Utilisateur> utilisateurList=utilisateurService.getAllUtilisateurs();
                     request.setAttribute("task", task);
                     request.setAttribute("tags", tags);
+                    request.setAttribute("currentUser", currentUser);
                     request.setAttribute("utilisateurList", utilisateurList);
                     request.getRequestDispatcher("/views/Task/editTask.jsp").forward(request, response);
                 } else {
@@ -56,8 +58,11 @@ public class TaskWebService extends HttpServlet {
                 List<Tag> tags=tagService.getAllTags();
                 List<Utilisateur> utilisateurList=utilisateurService.getAllUtilisateurs();
                 List<Task> myTasks = taskService.getTasksByCreator(currentUser.getId());
+                String role=currentUser.getRole().name();
                 request.setAttribute("myTasks", myTasks);
                 request.setAttribute("tags", tags);
+                request.getSession().setAttribute("role", role);
+                request.setAttribute("currentUser", currentUser);
                 request.setAttribute("utilisateurList", utilisateurList);
                 request.getRequestDispatcher("/views/Task/tasks.jsp").forward(request, response);
             }
@@ -84,14 +89,19 @@ public class TaskWebService extends HttpServlet {
 
                 HttpSession session = req.getSession();
                 Utilisateur currentUser = (Utilisateur) session.getAttribute("currentUser");
-                long assignedTo = Long.parseLong(req.getParameter("assignedTo"));
-                Utilisateur assignedToUser = utilisateurService.getUtilisateur(assignedTo).orElse(null);
                 Task task = new Task();
+                if(currentUser.getRole()== Role.MANAGER){
+
+                    long assignedTo = Long.parseLong(req.getParameter("assignedTo"));
+                    Utilisateur assignedToUser = utilisateurService.getUtilisateur(assignedTo).orElse(null);
+                    task.setAssignedTo(assignedToUser);
+                } else if (currentUser.getRole()== Role.USER) {
+                    task.setAssignedTo(currentUser);
+                }
                 task.setTitle(title);
                 task.setDescription(description);
                 task.setStatus(status);
                 task.setDeadLine(deadLine);
-                task.setAssignedTo(assignedToUser);
                 task.setCreatedBy(currentUser);
                 String[] tagIds = req.getParameterValues("tags");
                 List<Tag> tags = new ArrayList<>();
@@ -105,6 +115,7 @@ public class TaskWebService extends HttpServlet {
                 }
                 task.setTags(tags);
                 taskService.createTask(task);
+                res.sendRedirect(req.getContextPath() + "/tasks");
 
             } else if ("update".equals(action)) {
                 Long taskId = Long.valueOf(req.getParameter("id"));
@@ -114,16 +125,20 @@ public class TaskWebService extends HttpServlet {
                 String deadLineStr = req.getParameter("deadLine");
                 HttpSession session = req.getSession();
                 Utilisateur currentUser = (Utilisateur) session.getAttribute("currentUser");
-                long assignedTo = Long.parseLong(req.getParameter("assignedTo"));
-                Utilisateur assignedToUser = utilisateurService.getUtilisateur(assignedTo).orElse(null);
-
                 Task task = taskService.getTaskById(taskId);
                 if (task != null) {
+                    if(currentUser.getRole()== Role.MANAGER){
+
+                        long assignedTo = Long.parseLong(req.getParameter("assignedTo"));
+                        Utilisateur assignedToUser = utilisateurService.getUtilisateur(assignedTo).orElse(null);
+                        task.setAssignedTo(assignedToUser);
+                    } else if (currentUser.getRole()== Role.USER) {
+                        task.setAssignedTo(currentUser);
+                    }
                     task.setTitle(title);
                     task.setDescription(description);
                     task.setStatus(Status.valueOf(statusStr));
                     task.setDeadLine(LocalDateTime.parse(deadLineStr));
-                    task.setAssignedTo(assignedToUser);
                     task.setCreatedBy(currentUser);
                     String[] tagIds = req.getParameterValues("tags");
                     List<Tag> tags = new ArrayList<>();
@@ -138,12 +153,18 @@ public class TaskWebService extends HttpServlet {
                     task.setTags(tags);
                     taskService.updateTask(task);
                 }
-
+                res.sendRedirect(req.getContextPath() + "/tasks");
             } else if ("delete".equals(action)) {
                 Long taskId = Long.valueOf(req.getParameter("id"));
                 taskService.deleteTask(taskId);
+                res.sendRedirect(req.getContextPath() + "/tasks");
+            }else if ("changeStatus".equals(action)) {
+                Long taskId = Long.valueOf(req.getParameter("id"));
+                Status newStatus = Status.valueOf(req.getParameter("status"));
+                taskService.changeStatus(taskId, newStatus);
+                res.sendRedirect(req.getContextPath() + "/profil");
             }
-            res.sendRedirect(req.getContextPath() + "/tasks");
+
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -38,9 +38,8 @@ public class LoginWebService extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("currentUser", currentUtilisateur);
             session.setAttribute("username", username);
-            response.sendRedirect(request.getContextPath() + "/utilisateurs");
+            response.sendRedirect(request.getContextPath() + "/profil");
         } else {
-            // Définissez loginError uniquement lorsque la connexion échoue
             request.setAttribute("loginError", "Invalid username or password.");
             request.getRequestDispatcher("/views/signin.jsp").forward(request, response);
         }

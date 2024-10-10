@@ -5,6 +5,8 @@
         <class>com.example.devSync.bean.Utilisateur</class>
         <class>com.example.devSync.bean.Tag</class>
         <class>com.example.devSync.bean.Task</class>
+        <class>com.example.devSync.bean.TaskHistory</class>
+        <class>com.example.devSync.bean.UserToken</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/devsync"/>

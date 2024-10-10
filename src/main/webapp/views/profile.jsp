@@ -99,10 +99,12 @@
                                 <td><c:out value="${task.deadLine}" /></td>
                                 <c:if test="${!currentUser.getId().equals(task.createdBy.getId())}">
                                     <td>
-                                        <a href="tasks?id=${task.id}&action=remplacer" class="edit">
+                                        <a href="taskHistory?id=${task.id}&newUserId=${currentUser.getId()}&action=remplace" class="edit">
                                             <i class="material-icons" data-toggle="tooltip" title="Remplacer">swap_horiz</i>
                                         </a>
-                                        <a href="tasks?id=${task.id}&action=supprimer" class="delete">
+
+
+                                        <a href="taskHistory?id=${task.id}?newUserId=${currentUser.getId()}&action=supprimer" class="delete">
                                             <i class="material-icons" data-toggle="tooltip" title="Supprimer" style="color: darkred">&#xE872;</i>
                                         </a>
                                     </td>

@@ -50,4 +50,13 @@
     <url-pattern>/profil</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>TaskHistoryWebService</servlet-name>
+    <servlet-class>com.example.devSync.webService.TaskHistoryWebService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TaskHistoryWebService</servlet-name>
+    <url-pattern>/taskHistory</url-pattern>
+  </servlet-mapping>
+
 </web-app>

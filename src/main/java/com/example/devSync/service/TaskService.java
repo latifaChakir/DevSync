@@ -2,6 +2,7 @@ package com.example.devSync.service;
 
 import com.example.devSync.bean.Tag;
 import com.example.devSync.bean.Task;
+import com.example.devSync.bean.Utilisateur;
 import com.example.devSync.bean.enums.Status;
 import com.example.devSync.dao.TagDao;
 import com.example.devSync.dao.TaskDao;
@@ -41,6 +42,6 @@ public class TaskService {
             task.setStatus(status);
             updateTask(task);
         }
-
     }
+
 }

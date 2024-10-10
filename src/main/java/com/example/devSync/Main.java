@@ -6,14 +6,21 @@ import com.example.devSync.dao.TaskDao;
 import com.example.devSync.dao.UtilisateurDao;
 import com.example.devSync.dao.impl.TaskDaoImpl;
 import com.example.devSync.dao.impl.UtilisateurDaoImpl;
-import com.example.devSync.service.TaskService;
-import com.example.devSync.service.UtilisateurService;
+import com.example.devSync.service.*;
 
 public class Main {
     public static void main(String[] args) {
-        TaskService taskService = new TaskService();
-        Long assignedTo= 13L;
-        taskService.getTasksByAssigned(13L);
+//        TaskHistoryService taskHistoryService = new TaskHistoryService();
+//        Long taskId = 9L;
+//        TaskService taskService = new TaskService();
+//        Task task = taskService.getTaskById(taskId);
+//        Long userId = 13L;
+//        UtilisateurService utilisateurService = new UtilisateurService();
+//        Utilisateur utilisateur = utilisateurService.getUtilisateur(userId).orElse(null);
+//        taskHistoryService.AskToRemplace(task,utilisateur);
+        System.out.println("ok");
+        new CronJobService();
+
 
 //        UtilisateurDao utilisateurDao = new UtilisateurDaoImpl();
 //        UtilisateurService utilisateurService = new UtilisateurService();

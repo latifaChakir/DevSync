@@ -165,7 +165,6 @@ public class TaskWebService extends HttpServlet {
                 res.sendRedirect(req.getContextPath() + "/profil");
             }
 
-
         } catch (Exception e) {
             e.printStackTrace();
             res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

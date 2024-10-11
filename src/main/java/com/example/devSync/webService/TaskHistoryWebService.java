@@ -35,7 +35,27 @@ public class TaskHistoryWebService extends HttpServlet {
                 taskHistoryService.AskToRemplace(task, newUser);
                 response.sendRedirect(request.getContextPath() + "/profil");
                 break;
-            case "delete":
+            case "remove":
+                Long Id = Long.valueOf(request.getParameter("id"));
+                Task task1 = taskService.getTaskById(Id);
+
+                if (task1 == null) {
+                    response.sendError(HttpServletResponse.SC_NOT_FOUND, "Tâche non trouvée");
+                    break;
+                }
+
+                Long newUserId1 = Long.valueOf(request.getParameter("newUserId"));
+                Utilisateur newUser1 = utilisateurService.getUtilisateur(newUserId1).orElse(null);
+
+                if (newUser1 == null) {
+                    response.sendError(HttpServletResponse.SC_NOT_FOUND, "Utilisateur non trouvé");
+                    break;
+                }
+
+                taskHistoryService.AskToRemove(task1, newUser1);
+                response.sendRedirect(request.getContextPath() + "/profil");
+                break;
+
 
             case "update":
 

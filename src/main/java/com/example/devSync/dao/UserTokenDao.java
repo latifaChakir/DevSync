@@ -12,4 +12,6 @@ public interface UserTokenDao {
     public UserToken update(UserToken userToken);
     public void delete(long id);
     public List<UserToken>findByTokenType(String tokenType);
+    public UserToken findByUser(Long userId);
+    public UserToken findByUserAndType(Long userId, String tokenType);
 }

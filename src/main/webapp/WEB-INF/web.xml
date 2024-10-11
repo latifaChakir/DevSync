@@ -59,4 +59,8 @@
     <url-pattern>/taskHistory</url-pattern>
   </servlet-mapping>
 
+  <listener>
+    <listener-class>com.example.devSync.util.QuartzInitializerListener</listener-class>
+  </listener>
+
 </web-app>

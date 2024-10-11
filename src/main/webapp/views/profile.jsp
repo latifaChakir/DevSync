@@ -104,9 +104,10 @@
                                         </a>
 
 
-                                        <a href="taskHistory?id=${task.id}?newUserId=${currentUser.getId()}&action=supprimer" class="delete">
+                                        <a href="taskHistory?id=${task.id}&newUserId=${currentUser.getId()}&action=remove" class="delete">
                                             <i class="material-icons" data-toggle="tooltip" title="Supprimer" style="color: darkred">&#xE872;</i>
                                         </a>
+
                                     </td>
                                 </c:if>
 

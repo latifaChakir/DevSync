@@ -8,6 +8,7 @@ import com.example.devSync.dao.TaskHistoryDao;
 import com.example.devSync.dao.impl.TaskHistoryDaoImpl;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class TaskHistoryService {
@@ -16,21 +17,59 @@ public class TaskHistoryService {
 //    public void addTaskHistory(TaskHistory taskHistory){
 //        taskHistoryDao.save(taskHistory);
 //    }
-    public void AskToRemplace(Task task, Utilisateur user) {
+public void AskToRemplace(Task task, Utilisateur user) {
+    TaskHistory taskHistory = new TaskHistory();
+    taskHistory.setTask(task);
+    taskHistory.setUser(user);
+    taskHistory.setIsApproved(false);
+    taskHistory.setTypeModification("Remplacement");
+    taskHistory.setModificationDate(LocalDate.now().atStartOfDay());
+    taskHistoryDao.save(taskHistory);
+    String tokenType = "Remplacement";
+    UserToken existingUserToken = userTokenService.findByUserAndTokenType(user, tokenType);
+
+    if (existingUserToken != null) {
+        int currentCount = existingUserToken.getTokenCount();
+        if (currentCount > 0) {
+            existingUserToken.setTokenCount(currentCount - 1);
+            existingUserToken.setLastReset(LocalDate.now());
+            userTokenService.update(existingUserToken);
+        } else {
+            System.out.println("Le compteur de jetons est déjà à zéro pour cet utilisateur.");
+        }
+    } else {
+        System.out.println("Aucun jeton trouvé pour cet utilisateur avec le type de jeton spécifié.");
+    }
+}
+    public void AskToRemove(Task task, Utilisateur user) {
         TaskHistory taskHistory = new TaskHistory();
         taskHistory.setTask(task);
         taskHistory.setUser(user);
         taskHistory.setIsApproved(false);
-        taskHistory.setTypeModification("Remplacement");
+        taskHistory.setTypeModification("Suppression");
         taskHistory.setModificationDate(LocalDate.now().atStartOfDay());
         taskHistoryDao.save(taskHistory);
-        UserToken userToken = new UserToken();
-        userToken.setUser(user);
-        userToken.setTokenType("Remplacement");
-        userToken.setTokenCount(2);
-        userToken.setLastReset(LocalDate.now());
-        userTokenService.save(userToken);
+        String tokenType = "Suppression";
+        UserToken existingUserToken = userTokenService.findByUserAndTokenType(user, tokenType);
+        if (existingUserToken != null) {
+            int currentCount = existingUserToken.getTokenCount();
+            if (currentCount > 0) {
+                existingUserToken.setTokenCount(currentCount - 1);
+                existingUserToken.setLastReset(LocalDate.now());
+                userTokenService.update(existingUserToken);
+            } else {
+                System.out.println("Le compteur de jetons est déjà à zéro pour cet utilisateur.");
+            }
+        } else {
+            System.out.println("Aucun jeton trouvé pour cet utilisateur avec le type de jeton spécifié.");
+        }
     }
+
+
+    //    public void approveRemplace(TaskHistory taskHistory) {
+//        taskHistory.setIsApproved(true);
+//        taskHistoryDao.update(taskHistory);
+//    }
     public void updateTaskHistory(TaskHistory taskHistory){
         taskHistoryDao.update(taskHistory);
     }

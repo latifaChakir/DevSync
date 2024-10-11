@@ -10,20 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0438aab0-59ca-4920-9a4b-bac4589cfee9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/TaskHistoryDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/UserTokenDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/TaskHistoryDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/UserTokenDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TaskHistoryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/UserTokenService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/TaskHistoryWebService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/UserTokenDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/UserTokenDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/UserTokenDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/UserTokenDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/CronJobService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/CronJobService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/ResetTokensJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/ResetTokensJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TaskHistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TaskHistoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TaskService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/LoginWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/LoginWebService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/TaskWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/TaskWebService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/UserTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/UserTokenService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/TaskHistoryWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/TaskHistoryWebService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/profile.jsp" afterDir="false" />
     </list>
@@ -64,39 +60,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;JBoss/WildFly Server.JBoss/WildFly 29.0.5.Final-redhat-000011.executor&quot;: &quot;JRebel Executor&quot;,
-    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.DevSync [install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;part2&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Youcode/Desktop/DevSync/src/main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "JBoss/WildFly Server.JBoss/WildFly 29.0.5.Final-redhat-000011.executor": "Run",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.DevSync [install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "part2",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Youcode/Desktop/DevSync/src/main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RebelAgentSelection">
     <selection>jr</selection>
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.devSync.service" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Youcode\Desktop\DevSync\src\main" />
       <recent name="C:\Users\Youcode\Desktop\GestionTaches" />
@@ -269,7 +268,7 @@
       <workItem from="1728376630411" duration="10339000" />
       <workItem from="1728401085274" duration="62344000" />
       <workItem from="1728593642568" duration="3401000" />
-      <workItem from="1728597060127" duration="3746000" />
+      <workItem from="1728597060127" duration="19248000" />
     </task>
     <servers />
   </component>

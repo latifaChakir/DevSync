@@ -10,6 +10,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -161,6 +162,15 @@ public class TaskDaoImpl implements TaskDao, AutoCloseable {
             e.printStackTrace();
         }
         return tasks;
+    }
+
+    @Override
+    public List<Task> findOverdueTasks(LocalDate date) {
+        try (EntityManager entityManager = emf.createEntityManager()) {
+            return entityManager.createQuery("SELECT t FROM Task t WHERE t.deadLine <= :date AND t.status!= 'TERMINEE'", Task.class)
+                   .setParameter("date", date)
+                   .getResultList();
+        }
     }
 
 

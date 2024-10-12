@@ -1,8 +1,10 @@
 package com.example.devSync.webService;
 
 import com.example.devSync.bean.Task;
+import com.example.devSync.bean.TaskHistory;
 import com.example.devSync.bean.Utilisateur;
 import com.example.devSync.bean.enums.Role;
+import com.example.devSync.service.TaskHistoryService;
 import com.example.devSync.service.TaskService;
 import com.example.devSync.service.UtilisateurService;
 import jakarta.servlet.ServletException;
@@ -20,10 +22,12 @@ import java.util.List;
 public class ProfileWebService extends HttpServlet {
     private UtilisateurService utilisateurService;
     private TaskService taskService;
+    private TaskHistoryService taskHistoryService;
 
     @Override
     public void init() throws ServletException {
         utilisateurService = new UtilisateurService();
+        taskHistoryService=new TaskHistoryService();
         taskService=new TaskService();
     }
     @Override
@@ -34,8 +38,10 @@ public class ProfileWebService extends HttpServlet {
         if (currentUser != null) {
             if (currentUser.getRole() == Role.MANAGER) {
                 List<Task> myTasks = taskService.getTasksByCreator(currentUser.getId());
+                List<TaskHistory> TasksToChange = taskHistoryService.getMyRequestToApproved(currentUser);
                 request.setAttribute("currentUser", currentUser);
                 request.setAttribute("myTasks", myTasks);
+                request.setAttribute("TasksToChange", TasksToChange);
                 request.getRequestDispatcher("/views/profileAdmin.jsp").forward(request, response);
 
             } else if (currentUser.getRole() == Role.USER) {

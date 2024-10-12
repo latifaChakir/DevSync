@@ -61,23 +61,32 @@
             </div>
         </div>
         <div class="col-lg-8 pb-5">
+            <h4>Tasks To Approved </h4>
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
                     <thead>
                     <tr>
-                        <th>Task</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                        <th>DeadLine</th>
+                        <th>id</th>
+                        <th>Task Title</th>
+                        <th>Type de modification </th>
+                        <th>Date de modification </th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="task" items="${myTasks}">
+                    <c:forEach var="task" items="${TasksToChange}">
                         <tr>
-                            <td><c:out value="${task.title}" /></td>
-                            <td><c:out value="${task.description}" /></td>
-                            <td><span class="badge badge-success m-0"><c:out value="${task.status}" /></span></td>
-                            <td><c:out value="${task.deadLine}" /></td>
+                             <td><c:out value="${task.id}" /></td>
+                             <td><c:out value="${task.getTask().getTitle()}" /></td>
+                             <td><c:out value="${task.typeModification}" /></td>
+                             <td><c:out value="${task.modificationDate}" /></td>
+                            <td>
+                                <a href="taskHistory?id=${task.id}&action=approuver" class="edit">
+                                    <i class="material-icons" data-toggle="tooltip" title="Approuver" style="color: green;">check</i>                                </a>
+                                <a href="taskHistory?id=${task.id}&action=refuser" class="delete">
+                                    <i class="material-icons" data-toggle="tooltip" title="Refuser" style="color: red;">close</i>
+                                </a>
+                            </td>
                         </tr>
                     </c:forEach>
 

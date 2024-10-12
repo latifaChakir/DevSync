@@ -1,6 +1,7 @@
 package com.example.devSync;
 
 import com.example.devSync.bean.Task;
+import com.example.devSync.bean.TaskHistory;
 import com.example.devSync.bean.UserToken;
 import com.example.devSync.bean.Utilisateur;
 import com.example.devSync.dao.TaskDao;
@@ -26,16 +27,27 @@ public class Main {
 //        UtilisateurService utilisateurService = new UtilisateurService();
 //        Utilisateur utilisateur = utilisateurService.getUtilisateur(userId).orElse(null);
 //        taskHistoryService.AskToRemplace(task,utilisateur);
-        PatternLayout layout = new PatternLayout("%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n");
-        ConsoleAppender consoleAppender = new ConsoleAppender(layout);
-        Logger.getRootLogger().addAppender(consoleAppender);
+//        PatternLayout layout = new PatternLayout("%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n");
+//        ConsoleAppender consoleAppender = new ConsoleAppender(layout);
+//        Logger.getRootLogger().addAppender(consoleAppender);
+//
+//        logger.warn("Ceci est un message de log de niveau WARN");
+//        logger.error("Ceci est un message de log de niveau ERROR");
+//        UserTokenService userTokenService = new UserTokenService();
+//        CronJobService cronJobService=new CronJobService(userTokenService);
 
-        logger.warn("Ceci est un message de log de niveau WARN");
-        logger.error("Ceci est un message de log de niveau ERROR");
-        UserTokenService userTokenService = new UserTokenService();
-        CronJobService cronJobService=new CronJobService(userTokenService);
+        TaskHistoryService taskHistoryService=new TaskHistoryService();
+        Long userId = 12L;
+        UtilisateurService utilisateurService = new UtilisateurService();
+        Utilisateur utilisateur = utilisateurService.getUtilisateur(userId).orElse(null);
 
+        List<TaskHistory> tasks=taskHistoryService.getMyRequestToApproved(utilisateur);
 
+        for (TaskHistory taskHistory : tasks)
+        {
+            System.out.println(taskHistory);
+        }
+//        System.out.println(tasks);
 //        UtilisateurDao utilisateurDao = new UtilisateurDaoImpl();
 //        UtilisateurService utilisateurService = new UtilisateurService();
 //

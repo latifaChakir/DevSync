@@ -69,4 +69,13 @@ public class TaskService {
         }
     }
 
+    public List<Task> findOverdueTasks(LocalDate date){
+        List<Task> overdueTasks = taskDao.findOverdueTasks(date);
+        for (Task task : overdueTasks) {
+            task.setStatus(Status.A_FAIRE);
+            updateTask(task);
+        }
+        return overdueTasks;
+    }
+
 }

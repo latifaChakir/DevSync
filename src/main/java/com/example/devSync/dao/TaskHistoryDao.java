@@ -10,4 +10,6 @@ public interface TaskHistoryDao {
     public Optional<TaskHistory> findById(Long id);
     public List<TaskHistory> findAll();
     public TaskHistory update(TaskHistory taskHistory);
+
+    List<TaskHistory> getAllTaskHistory();
 }

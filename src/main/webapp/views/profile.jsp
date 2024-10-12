@@ -102,8 +102,6 @@
                                         <a href="taskHistory?id=${task.id}&newUserId=${currentUser.getId()}&action=remplace" class="edit">
                                             <i class="material-icons" data-toggle="tooltip" title="Remplacer">swap_horiz</i>
                                         </a>
-
-
                                         <a href="taskHistory?id=${task.id}&newUserId=${currentUser.getId()}&action=remove" class="delete">
                                             <i class="material-icons" data-toggle="tooltip" title="Supprimer" style="color: darkred">&#xE872;</i>
                                         </a>

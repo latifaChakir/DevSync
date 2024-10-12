@@ -13,6 +13,7 @@ public class CronJobService {
             scheduleResetTokensJob(userTokenService);
             scheduleResetDeleteTokensJob(userTokenService);
             scheduleTaskVerificationJob();
+            scheduleRemplaceTask();
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
@@ -32,11 +33,11 @@ public class CronJobService {
 
         Trigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity("resetTokensTrigger", "group1")
-                .withSchedule(CronScheduleBuilder.cronSchedule("*/2 * * * * ?"))
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 0 0 * * ?"))
                 .build();
 
         scheduler.scheduleJob(jobDetail, trigger);
-        System.out.println("Le job de réinitialisation des jetons a été planifié pour toutes les 2 secondes.");
+        System.out.println("Le job de réinitialisation des jetons a été planifié pour chaque jour.");
     }
     private void scheduleResetDeleteTokensJob(UserTokenService userTokenService) throws SchedulerException {
         JobDataMap jobDataMap = new JobDataMap();
@@ -49,11 +50,11 @@ public class CronJobService {
 
         Trigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity("resetDeleteTokensTrigger", "group1")
-                .withSchedule(CronScheduleBuilder.cronSchedule("*/3 * * * * ?")) // Exécution toutes les 3 secondes
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 0 0 * * ?"))
                 .build();
 
         scheduler.scheduleJob(jobDetail, trigger);
-        System.out.println("Le job de réinitialisation des jetons de suppression a été planifié pour toutes les 3 secondes.");
+        System.out.println("Le job de réinitialisation des jetons de suppression a été planifié pour chaque jour.");
     }
 
 
@@ -69,5 +70,18 @@ public class CronJobService {
 
         scheduler.scheduleJob(jobDetail, trigger);
         System.out.println("Task verification job scheduled.");
+    }
+    private  void scheduleRemplaceTask() throws SchedulerException {
+        JobDetail jobDetail = JobBuilder.newJob(ChangeTaskJob.class)
+                .withIdentity("remplaceTaskJob", "group1")
+                .build();
+
+        Trigger trigger = TriggerBuilder.newTrigger()
+                .withIdentity("remplaceTaskTrigger", "group1")
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 0 * * * ?"))
+                .build();
+
+        scheduler.scheduleJob(jobDetail, trigger);
+        System.out.println("Remplace task job scheduled.");
     }
 }

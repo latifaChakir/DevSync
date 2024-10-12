@@ -2,6 +2,7 @@ package com.example.devSync.webService;
 
 import com.example.devSync.bean.Tag;
 import com.example.devSync.bean.Task;
+import com.example.devSync.bean.TaskHistory;
 import com.example.devSync.bean.Utilisateur;
 import com.example.devSync.service.TaskHistoryService;
 import com.example.devSync.service.TaskService;
@@ -25,6 +26,7 @@ public class TaskHistoryWebService extends HttpServlet {
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        Long taskHId = Long.valueOf(request.getParameter("id"));
 
         switch (action) {
             case "remplace":
@@ -57,7 +59,24 @@ public class TaskHistoryWebService extends HttpServlet {
                 break;
 
 
-            case "update":
+            case "approuver":
+                TaskHistory taskHistory = taskHistoryService.getTaskHistoryById(taskHId);
+                if (taskHistory == null) {
+                    response.sendError(HttpServletResponse.SC_NOT_FOUND, "Historique de tâche non trouvé");
+                    break;
+                }
+                taskHistoryService.approveRemplace(taskHistory);
+                response.sendRedirect(request.getContextPath() + "/profil");
+                break;
+            case "refuser":
+                TaskHistory taskHistory1 = taskHistoryService.getTaskHistoryById(taskHId);
+                if (taskHistory1 == null) {
+                    response.sendError(HttpServletResponse.SC_NOT_FOUND, "Historique de tâche non trouvé");
+                    break;
+                }
+                taskHistoryService.desapproveRemplace(taskHistory1);
+                response.sendRedirect(request.getContextPath() + "/profil");
+                break;
 
             default:
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");

@@ -17,8 +17,9 @@ public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    @ManyToMany(mappedBy = "tags")
-    private List<Task> tasks;
 
+    private String name;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
+    private List<Task> tasks;
 }

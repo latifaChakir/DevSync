@@ -13,8 +13,8 @@ import java.util.List;
 @Entity
 @Table(name = "tasks")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Task {
 
     @Id
@@ -37,7 +37,7 @@ public class Task {
 
     private LocalDateTime deletedAt;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "created_by", nullable = false)
     private Utilisateur createdBy;
 
@@ -45,12 +45,28 @@ public class Task {
     @JoinColumn(name = "assigned_to", nullable = false)
     private Utilisateur assignedTo;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "tasks_tags",
             joinColumns = @JoinColumn(name = "task_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private List<Tag> tags;
-}
 
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", deadLine=" + deadLine +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", deletedAt=" + deletedAt +
+                ", createdBy=" + createdBy +
+                ", assignedTo=" + assignedTo +
+
+                '}';
+    }
+}

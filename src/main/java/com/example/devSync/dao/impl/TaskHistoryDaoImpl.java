@@ -46,8 +46,43 @@ public class TaskHistoryDaoImpl implements TaskHistoryDao, AutoCloseable {
 
     @Override
     public List<TaskHistory> findAll() {
-        try (EntityManager entityManager = emf.createEntityManager()) {
-            return entityManager.createQuery("select t from TaskHistory t", TaskHistory.class).getResultList();
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        List<TaskHistory> taskHistories;
+
+        try {
+            transaction.begin();
+            taskHistories = entityManager.createQuery("select h from TaskHistory h", TaskHistory.class).getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw new RuntimeException("Error retrieving task histories", e);
+        } finally {
+            entityManager.close();
+        }
+
+        return taskHistories;
+    }
+    public List<TaskHistory> getAllTaskHistory(){
+        try(EntityManager entityManager = emf.createEntityManager()) {
+
+            EntityTransaction transaction= entityManager.getTransaction();
+            if(!transaction.isActive()){
+                transaction.begin();
+            }
+            List<TaskHistory> taskHistoryList = entityManager
+                    .createQuery("from TaskHistory th",TaskHistory.class)
+                    .getResultList();
+            taskHistoryList.forEach(taskHistory -> entityManager.refresh(taskHistory));
+            transaction.commit();
+            return taskHistoryList;
+        }catch (Exception e){
+//            if(transaction.isActive()) {
+//                transaction.rollback();
+//            }
+            throw e;
         }
     }
 

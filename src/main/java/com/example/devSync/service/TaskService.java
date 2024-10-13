@@ -10,7 +10,11 @@ import com.example.devSync.dao.TaskDao;
 import com.example.devSync.dao.impl.TaskDaoImpl;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TaskService {
     private TaskDao taskDao = new TaskDaoImpl();
@@ -44,38 +48,69 @@ public class TaskService {
     public void updateTask(Task task) {
         taskDao.update(task);
     }
+
     public void deleteTask(Long taskId) {
         taskDao.delete(taskId);
     }
+
     public Task getTaskById(Long taskId) {
         return taskDao.findById(taskId).orElse(null);
     }
+
     public List<Task> getAllTasks() {
         return taskDao.findAll();
     }
-    public List <Task> getTasksByCreator (Long taskId) {
+
+    public List<Task> getTasksByCreator(Long taskId) {
         return taskDao.getTasksByCreatorId(taskId);
     }
-    public List <Task> getTasksByAssigned (Long taskId) {
+
+    public List<Task> getTasksByAssigned(Long taskId) {
 
         return taskDao.getTasksByAssigneeId(taskId);
     }
 
-    public void  changeStatus(long taskId, Status status) {
+    public void changeStatus(long taskId, Status status) {
         Task task = getTaskById(taskId);
-        if (task!= null) {
+        if (task != null) {
             task.setStatus(status);
             updateTask(task);
         }
     }
 
-    public List<Task> findOverdueTasks(LocalDate date){
+    public List<Task> findOverdueTasks(LocalDate date) {
         List<Task> overdueTasks = taskDao.findOverdueTasks(date);
         for (Task task : overdueTasks) {
-            task.setStatus(Status.A_FAIRE);
+            task.setStatus(Status.NON_EFFECTUER);
             updateTask(task);
         }
         return overdueTasks;
     }
 
+    public Map<String, Long> calculateStatisticsByCreatorId(Long creatorId) {
+        List<Task> createdTasks = taskDao.getTasksByCreatorId(creatorId);
+
+        long totalCreatedTasks = createdTasks.size();
+        long completedCreatedTasks = createdTasks.stream()
+                .filter(task -> task.getStatus().equals(Status.TERMINEE))
+                .count();
+        long inProgressCreatedTasks = createdTasks.stream()
+                .filter(task -> task.getStatus().equals(Status.EN_COURS))
+                .count();
+        long notStartedCreatedTasks = createdTasks.stream()
+                .filter(task -> task.getStatus().equals(Status.A_FAIRE))
+                .count();
+        long notEffectuedCreatedTasks = createdTasks.stream()
+                .filter(task -> task.getStatus().equals(Status.NON_EFFECTUER))
+                .count();
+
+        Map<String, Long> statistics = new HashMap<>();
+        statistics.put("totalCreatedTasks", totalCreatedTasks);
+        statistics.put("completedCreatedTasks", completedCreatedTasks);
+        statistics.put("inProgressCreatedTasks", inProgressCreatedTasks);
+        statistics.put("notStartedCreatedTasks", notStartedCreatedTasks);
+        statistics.put("notEffectuedCreatedTasks", notEffectuedCreatedTasks);
+
+        return statistics;
+    }
 }

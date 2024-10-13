@@ -3,6 +3,7 @@ package com.example.devSync.dao;
 import com.example.devSync.bean.Task;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,4 +18,5 @@ public interface TaskDao {
     public List<Task> getTasksByCreatorId(Long id);
 
     List<Task> findOverdueTasks(LocalDate date);
+    List<Task> findByTagsAndDateRangeAndCreator(String tag, LocalDateTime startDate, LocalDateTime endDate, Long creatorId);
 }

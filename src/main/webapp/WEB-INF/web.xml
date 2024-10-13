@@ -59,6 +59,15 @@
     <url-pattern>/taskHistory</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>StatisticWebService</servlet-name>
+    <servlet-class>com.example.devSync.webService.StatisticWebService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StatisticWebService</servlet-name>
+    <url-pattern>/dashboard</url-pattern>
+  </servlet-mapping>
+
   <listener>
     <listener-class>com.example.devSync.util.QuartzInitializerListener</listener-class>
   </listener>

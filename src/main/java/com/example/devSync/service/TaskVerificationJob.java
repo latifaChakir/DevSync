@@ -18,8 +18,8 @@ public class TaskVerificationJob implements Job {
         try {
             List<Task> overdueTasks = taskService.findOverdueTasks(LocalDate.now());
             for (Task task : overdueTasks) {
-                task.setStatus(Status.A_FAIRE);
-                taskService.createTask(task);
+                task.setStatus(Status.NON_EFFECTUER);
+                taskService.updateTask(task);
             }
             System.out.println("Overdue tasks marked as non effectuées.");
         } catch (Exception e) {

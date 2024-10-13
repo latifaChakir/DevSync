@@ -42,7 +42,7 @@
                                 <div class="d-inline-block font-weight-medium text-uppercase">Orders List</div>
                             </div><span class="badge badge-secondary">6</span>
                         </div>
-                    </a><a class="list-group-item" href="https://www.bootdey.com/snippets/view/bs4-profile-settings-page" target="__blank"><i class="fa fa-user text-muted"></i>Profile Settings</a><a class="list-group-item" href="#"><i class="fa fa-map-marker text-muted"></i>Addresses</a>
+                    </a><a class="list-group-item" href="/DevSync/dashboard" target="__blank"><i class="fa fa-user text-muted"></i>Dashboard</a><a class="list-group-item" href="#"><i class="fa fa-map-marker text-muted"></i>Addresses</a>
                     <a class="list-group-item" href="/DevSync/tags?action=getAll" tagert="__blank">
                         <div class="d-flex justify-content-between align-items-center">
                             <div><i class="fa fa-heart mr-1 text-muted"></i>

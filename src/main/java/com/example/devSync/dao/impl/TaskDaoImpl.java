@@ -11,6 +11,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -172,7 +173,37 @@ public class TaskDaoImpl implements TaskDao, AutoCloseable {
                    .getResultList();
         }
     }
+    @Override
+    public List<Task> findByTagsAndDateRangeAndCreator(String tag, LocalDateTime startDate, LocalDateTime endDate, Long creatorId) {
+        List<Task> tasks = new ArrayList<>();
+        try (EntityManager entityManager = emf.createEntityManager()) {
+            EntityTransaction transaction = entityManager.getTransaction();
+            transaction.begin();
 
+            try {
+                tasks = entityManager.createQuery(
+                                "SELECT t FROM Task t JOIN t.tags tg " +
+                                        "WHERE tg.name = :tag " +
+                                        "AND t.createdBy.id = :creatorId " +
+                                        "AND t.deadLine BETWEEN :startDate AND :endDate", Task.class)
+                        .setParameter("tag", tag)
+                        .setParameter("creatorId", creatorId)
+                        .setParameter("startDate", startDate)
+                        .setParameter("endDate", endDate)
+                        .getResultList();
+
+                transaction.commit();
+            } catch (Exception e) {
+                if (transaction.isActive()) {
+                    transaction.rollback();
+                }
+                throw new RuntimeException(e);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tasks;
+    }
 
     private void updateTasksTags(Task task, EntityManager entityManager) {
         if (task.getTags() != null) {

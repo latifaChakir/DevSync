@@ -15,8 +15,11 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container-xl">
-  <div class="table-responsive">
+<div class="row">
+  <jsp:include page="../sidebar.jsp" />
+
+<div class="px-2">
+  <div class="table-responsive mt-2">
     <div class="table-wrapper">
       <div class="table-title">
         <div class="row">
@@ -109,6 +112,7 @@
       </form>
     </div>
   </div>
+</div>
 </div>
 <style>
   body {

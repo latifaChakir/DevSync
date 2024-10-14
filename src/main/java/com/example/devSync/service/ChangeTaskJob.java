@@ -34,7 +34,7 @@ public class ChangeTaskJob implements Job {
                     UserToken existingUserToken = userTokenService.findByUserAndTokenType(user,"Remplacement");
 
                     if (existingUserToken != null) {
-                        existingUserToken.setTokenCount(existingUserToken.getTokenCount() + 2);
+                        existingUserToken.setTokenCount(existingUserToken.getTokenCount() * 2);
                         existingUserToken.setLastReset(LocalDate.now().plusDays(1));
                         userTokenService.update(existingUserToken);
 

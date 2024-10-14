@@ -67,6 +67,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao, AutoCloseable {
 
     @Override
     public void delete(long id) {
+        System.out.println("dfgh");
+        System.out.println(id);
         try (EntityManager entityManager = emf.createEntityManager()) {
             EntityTransaction transaction = entityManager.getTransaction();
             try {

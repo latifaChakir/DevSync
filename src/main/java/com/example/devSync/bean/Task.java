@@ -38,14 +38,14 @@ public class Task {
     private LocalDateTime deletedAt;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "created_by", nullable = false)
+    @JoinColumn(name = "created_by", nullable = true)
     private Utilisateur createdBy;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "assigned_to", nullable = false)
+    @JoinColumn(name = "assigned_to", nullable = true)
     private Utilisateur assignedTo;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE})
     @JoinTable(
             name = "tasks_tags",
             joinColumns = @JoinColumn(name = "task_id"),

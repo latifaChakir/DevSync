@@ -15,25 +15,6 @@
         body {
             background: #eee;
         }
-        .sidebar {
-            background-color: #343a40; /* Couleur de fond de la sidebar */
-            color: white; /* Couleur du texte */
-            height: 100vh; /* Hauteur de la sidebar */
-            padding: 15px; /* Espacement */
-        }
-        .sidebar h2 {
-            color: white;
-            margin-bottom: 20px;
-        }
-        .nav-link {
-            color: white; /* Couleur des liens */
-        }
-        .nav-link:hover {
-            background-color: #495057; /* Couleur de fond au survol */
-        }
-        .nav-item {
-            margin-bottom: 10px; /* Espacement entre les éléments */
-        }
         .card-box {
             position: relative;
             color: #fff;
@@ -104,27 +85,7 @@
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar -->
-        <div class="col-md-2 sidebar">
-            <h2>Menu</h2>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Tasks</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Reports</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Settings</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Logout</a>
-                </li>
-            </ul>
-        </div>
-
+        <jsp:include page="sidebar.jsp" />
         <!-- Main content -->
         <div class="col-md-10">
             <div class="col-lg-12">

@@ -30,7 +30,7 @@ public class UtilisateurWebService extends HttpServlet {
                 Utilisateur utilisateur = utilisateurService.getUtilisateur(utilisateurId).orElse(null);
                 if (utilisateur != null) {
                     request.setAttribute("utilisateur", utilisateur);
-                    request.getRequestDispatcher("/editUtilisateur.jsp").forward(request, response);
+                    request.getRequestDispatcher("/views/editUtilisateur.jsp").forward(request, response);
                 } else {
                     response.sendError(HttpServletResponse.SC_NOT_FOUND, "Utilisateur non trouvé");
                 }
@@ -40,7 +40,7 @@ public class UtilisateurWebService extends HttpServlet {
                 List<Utilisateur> utilisateursList = utilisateurService.getAllUtilisateurs();
                 request.setAttribute("currentUser", currentUser);
                 request.setAttribute("utilisateursList", utilisateursList);
-                request.getRequestDispatcher("/utilisateurs.jsp").forward(request, response);
+                request.getRequestDispatcher("/views/utilisateurs.jsp").forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -85,35 +85,56 @@ public class TaskWebService extends HttpServlet {
                 String deadLineStr = req.getParameter("deadLine");
 
                 LocalDateTime deadLine = LocalDateTime.parse(deadLineStr);
-                Status status = Status.valueOf(statusStr);
+                LocalDateTime now = LocalDateTime.now();
 
+                if (deadLine.isBefore(now)) {
+                    req.getSession().setAttribute("errorMessage", "La tâche ne peut pas avoir une date limite dans le passé.");
+                    res.sendRedirect(req.getContextPath() + "/tasks");
+                    return;
+                }
+
+
+                if (deadLine.isAfter(now.plusDays(3))) {
+                    req.getSession().setAttribute("errorMessage", "La tâche doit être planifiée dans un délai de 3 jours maximum.");
+                    res.sendRedirect(req.getContextPath() + "/tasks");
+                    return;
+                }
+
+                Status status = Status.valueOf(statusStr);
                 HttpSession session = req.getSession();
                 Utilisateur currentUser = (Utilisateur) session.getAttribute("currentUser");
-                Task task = new Task();
-                if(currentUser.getRole()== Role.MANAGER){
 
+                Task task = new Task();
+                if (currentUser.getRole() == Role.MANAGER) {
                     long assignedTo = Long.parseLong(req.getParameter("assignedTo"));
                     Utilisateur assignedToUser = utilisateurService.getUtilisateur(assignedTo).orElse(null);
                     task.setAssignedTo(assignedToUser);
-                } else if (currentUser.getRole()== Role.USER) {
+                } else if (currentUser.getRole() == Role.USER) {
                     task.setAssignedTo(currentUser);
                 }
+
                 task.setTitle(title);
                 task.setDescription(description);
                 task.setStatus(status);
                 task.setDeadLine(deadLine);
                 task.setCreatedBy(currentUser);
                 String[] tagIds = req.getParameterValues("tags");
-                List<Tag> tags = new ArrayList<>();
+                if (tagIds == null || tagIds.length < 2) {
+                    req.getSession().setAttribute("errorMessage", "Vous devez sélectionner au moins deux tags pour la tâche.");
+                    res.sendRedirect(req.getContextPath() + "/tasks");
+                    return;
+                }
 
-                if (tagIds != null && tagIds.length > 0) {
-                    for (String tagId : tagIds) {
-                        Long id = Long.parseLong(tagId);
-                        Tag tag = tagService.findTagById(id).orElse(null);
-                            tags.add(tag);
+                List<Tag> tags = new ArrayList<>();
+                for (String tagId : tagIds) {
+                    Long id = Long.parseLong(tagId);
+                    Tag tag = tagService.findTagById(id).orElse(null);
+                    if (tag != null) {
+                        tags.add(tag);
                     }
                 }
                 task.setTags(tags);
+
                 taskService.createTask(task);
                 res.sendRedirect(req.getContextPath() + "/tasks");
 
@@ -123,42 +144,67 @@ public class TaskWebService extends HttpServlet {
                 String description = req.getParameter("description");
                 String statusStr = req.getParameter("status");
                 String deadLineStr = req.getParameter("deadLine");
+
+                LocalDateTime deadLine = LocalDateTime.parse(deadLineStr);
+                LocalDateTime now = LocalDateTime.now();
+                if (deadLine.isBefore(now)) {
+                    req.setAttribute("errorMessage", "La tâche ne peut pas avoir une date limite dans le passé.");
+                    req.getRequestDispatcher("/views/Task/editTask.jsp").forward(req, res);
+                    return;
+                }
+
+                if (deadLine.isAfter(now.plusDays(3))) {
+                    req.setAttribute("errorMessage", "La tâche doit être planifiée dans un délai de 3 jours maximum.");
+                    req.getRequestDispatcher("/views/Task/editTask.jsp").forward(req, res);
+                    return;
+                }
+
                 HttpSession session = req.getSession();
                 Utilisateur currentUser = (Utilisateur) session.getAttribute("currentUser");
+
                 Task task = taskService.getTaskById(taskId);
                 if (task != null) {
-                    if(currentUser.getRole()== Role.MANAGER){
-
+                    if (currentUser.getRole() == Role.MANAGER) {
                         long assignedTo = Long.parseLong(req.getParameter("assignedTo"));
                         Utilisateur assignedToUser = utilisateurService.getUtilisateur(assignedTo).orElse(null);
                         task.setAssignedTo(assignedToUser);
-                    } else if (currentUser.getRole()== Role.USER) {
+                    } else if (currentUser.getRole() == Role.USER) {
                         task.setAssignedTo(currentUser);
                     }
+
                     task.setTitle(title);
                     task.setDescription(description);
                     task.setStatus(Status.valueOf(statusStr));
-                    task.setDeadLine(LocalDateTime.parse(deadLineStr));
+                    task.setDeadLine(deadLine);
                     task.setCreatedBy(currentUser);
-                    String[] tagIds = req.getParameterValues("tags");
-                    List<Tag> tags = new ArrayList<>();
 
-                    if (tagIds != null && tagIds.length > 0) {
-                        for (String tagId : tagIds) {
-                            Long id = Long.parseLong(tagId);
-                            Tag tag = tagService.findTagById(id).orElse(null);
+                    String[] tagIds = req.getParameterValues("tags");
+                    if (tagIds == null || tagIds.length < 2) {
+                        res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                        res.getWriter().write("Vous devez sélectionner au moins deux tags pour la tâche.");
+                        return;
+                    }
+
+                    List<Tag> tags = new ArrayList<>();
+                    for (String tagId : tagIds) {
+                        Long id = Long.parseLong(tagId);
+                        Tag tag = tagService.findTagById(id).orElse(null);
+                        if (tag != null) {
                             tags.add(tag);
                         }
                     }
                     task.setTags(tags);
+
                     taskService.updateTask(task);
                 }
                 res.sendRedirect(req.getContextPath() + "/tasks");
+
             } else if ("delete".equals(action)) {
                 Long taskId = Long.valueOf(req.getParameter("id"));
                 taskService.deleteTask(taskId);
                 res.sendRedirect(req.getContextPath() + "/tasks");
-            }else if ("changeStatus".equals(action)) {
+
+            } else if ("changeStatus".equals(action)) {
                 Long taskId = Long.valueOf(req.getParameter("id"));
                 Status newStatus = Status.valueOf(req.getParameter("status"));
                 taskService.changeStatus(taskId, newStatus);

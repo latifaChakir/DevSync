@@ -78,25 +78,31 @@ public class TaskDaoImpl implements TaskDao, AutoCloseable {
     }
 
     @Override
-    public void delete(long id) {
-        try (EntityManager entityManager = emf.createEntityManager()) {
-            EntityTransaction transaction = entityManager.getTransaction();
-            try {
-                transaction.begin();
-                Task task = entityManager.find(Task.class, id);
-                if (task != null) {
-                    entityManager.remove(task);
-                }
-                transaction.commit();
-            } catch (Exception e) {
-                if (transaction.isActive()) {
-                    transaction.rollback();
-                }
-                throw new RuntimeException(e);
+    public void delete(long taskId) {
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+
+        try {
+            transaction.begin();
+
+            Task task = entityManager.find(Task.class, taskId);
+            if (task != null) {
+                task.getTags().forEach(tag -> tag.getTasks().remove(task));
+                task.getTags().clear();
+
+                entityManager.remove(task);
             }
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            entityManager.close();
         }
     }
-
     @Override
     public List<Task> findByName(String name) {
         try (EntityManager entityManager = emf.createEntityManager()) {

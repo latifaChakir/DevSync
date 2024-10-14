@@ -10,16 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0438aab0-59ca-4920-9a4b-bac4589cfee9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/Dashboard.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/bean/enums/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/bean/enums/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/TaskDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/TaskDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/bean/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/bean/Task.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/TaskDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/TaskDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TaskService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TaskVerificationJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TaskVerificationJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/profileAdmin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/profileAdmin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/UtilisateurDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/UtilisateurDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/ChangeTaskJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/ChangeTaskJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/TaskWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/TaskWebService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/UtilisateurWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/UtilisateurWebService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/editUtilisateur.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/editUtilisateur.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/utilisateurs.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/utilisateurs.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/Dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/Dashboard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/Tag/tags.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/Tag/tags.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/Task/editTask.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/Task/editTask.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/Task/tasks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/Task/tasks.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +82,7 @@
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "database.query.execution",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -99,6 +103,7 @@
       <recent name="C:\Users\Youcode\Desktop\GestionTaches" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Youcode\Desktop\DevSync\src\main\webapp\views" />
       <recent name="C:\Users\Youcode\Desktop\DevSync\src\main\webapp\views\Task" />
       <recent name="C:\Users\Youcode\Desktop\DevSync\src\main\webapp\views\Tag" />
     </key>
@@ -221,18 +226,6 @@
         <option name="BuildArtifacts" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <deployment />
-      <server-settings />
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="JBoss/WildFly Server.JBoss/WildFly 29.0.5.Final-redhat-000011" />
@@ -278,7 +271,8 @@
       <workItem from="1728376630411" duration="10339000" />
       <workItem from="1728401085274" duration="62344000" />
       <workItem from="1728593642568" duration="3401000" />
-      <workItem from="1728597060127" duration="51086000" />
+      <workItem from="1728597060127" duration="51378000" />
+      <workItem from="1728849401327" duration="14045000" />
     </task>
     <servers />
   </component>
@@ -318,8 +312,8 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/webapp/utilisateurs.jsp</url>
-          <line>102</line>
+          <url>file://$PROJECT_DIR$/src/main/webapp/views/utilisateurs.jsp</url>
+          <line>103</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -331,6 +325,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/example/devSync/webService/TaskHistoryWebService.java</url>
           <line>27</line>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/webapp/views/sidebar.jsp</url>
+          <line>42</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/devSync/bean/Task.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

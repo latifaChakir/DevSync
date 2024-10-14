@@ -55,16 +55,23 @@
                         <input type="datetime-local" class="form-control" name="deadLine" value="${task.deadLine}" required>
                     </div>
 
-                    <c:if test="${currentUser.getRole().MANAGER}" >
+                    <c:if test="${role == 'MANAGER'}">
                         <div class="form-group">
                             <label>Assigned To</label>
                             <select name="assignedTo" class="form-control" required>
                                 <c:forEach var="user" items="${utilisateurList}">
-                                    <option value="${user.id}">${user.nom} ${user.prenom}</option>
+                                    <option value="${user.id}"
+                                            <c:if test="${not empty task.assignedTo and task.assignedTo.id == user.id}">
+                                                selected
+                                            </c:if>
+                                    >
+                                            ${user.nom} ${user.prenom}
+                                    </option>
                                 </c:forEach>
                             </select>
                         </div>
                     </c:if>
+
                     <div class="form-group">
                         <label>Tags</label>
                         <select class="form-control js-example-basic-multiple" name="tags" multiple="multiple" data-placeholder="Choose tags" style="width: 100%">

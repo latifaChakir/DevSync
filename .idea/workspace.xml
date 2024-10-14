@@ -12,23 +12,14 @@
     <list default="true" id="0438aab0-59ca-4920-9a4b-bac4589cfee9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/bean/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/bean/Tag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/bean/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/bean/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/TaskDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/TaskDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/TaskDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/dao/impl/TaskDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TaskHistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TaskHistoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TaskService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/CronJobService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/CronJobService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/AboutWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/AboutWebService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/TaskHistoryWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/TaskHistoryWebService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/TaskWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/webService/TaskWebService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/Dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/Dashboard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/Tag/tags.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/Tag/tags.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/Task/editTask.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/Task/editTask.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/Task/tasks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/Task/tasks.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/aboutMe.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/aboutMe.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/profile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/profileAdmin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/profileAdmin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/sidebar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/sidebar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/utilisateurs.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/utilisateurs.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +104,7 @@
       <recent name="C:\Users\Youcode\Desktop\DevSync\src\main\webapp\views\Tag" />
     </key>
   </component>
-  <component name="RunManager" selected="JBoss/WildFly Server.JBoss/WildFly 29.0.5.Final-redhat-000011">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.devSync.Main" />
       <module name="DevSync" />
@@ -277,7 +268,7 @@
       <workItem from="1728401085274" duration="62344000" />
       <workItem from="1728593642568" duration="3401000" />
       <workItem from="1728597060127" duration="51378000" />
-      <workItem from="1728849401327" duration="27002000" />
+      <workItem from="1728849401327" duration="37662000" />
     </task>
     <servers />
   </component>
@@ -328,7 +319,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/devSync/webService/TaskHistoryWebService.java</url>
-          <line>27</line>
+          <line>30</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

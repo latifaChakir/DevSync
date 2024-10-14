@@ -99,12 +99,11 @@ public class TaskWebService extends HttpServlet {
                 }
 
 
-                if (deadLine.isAfter(now.plusDays(3))) {
-                    req.getSession().setAttribute("errorMessage", "La tâche doit être planifiée dans un délai de 3 jours maximum.");
-                    res.sendRedirect(req.getContextPath() + "/tasks");
+                if (deadLine.isBefore(now.plusDays(3))) {
+                    req.setAttribute("errorMessage", "La tâche doit être planifiée pour au moins 3 jours après la date actuelle.");
+                    req.getRequestDispatcher("/views/Task/editTask.jsp").forward(req, res);
                     return;
                 }
-
                 Status status = Status.valueOf(statusStr);
                 HttpSession session = req.getSession();
                 Utilisateur currentUser = (Utilisateur) session.getAttribute("currentUser");
@@ -158,12 +157,11 @@ public class TaskWebService extends HttpServlet {
                     return;
                 }
 
-                if (deadLine.isAfter(now.plusDays(3))) {
-                    req.setAttribute("errorMessage", "La tâche doit être planifiée dans un délai de 3 jours maximum.");
+                if (deadLine.isBefore(now.plusDays(3))) {
+                    req.setAttribute("errorMessage", "La tâche doit être planifiée pour au moins 3 jours après la date actuelle.");
                     req.getRequestDispatcher("/views/Task/editTask.jsp").forward(req, res);
                     return;
                 }
-
                 HttpSession session = req.getSession();
                 Utilisateur currentUser = (Utilisateur) session.getAttribute("currentUser");
 

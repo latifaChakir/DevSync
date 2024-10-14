@@ -1,10 +1,12 @@
 package com.example.devSync.webService;
 
 
+import com.example.devSync.bean.UserToken;
 import com.example.devSync.bean.Utilisateur;
 import com.example.devSync.bean.enums.Role;
 import com.example.devSync.service.TaskHistoryService;
 import com.example.devSync.service.TaskService;
+import com.example.devSync.service.UserTokenService;
 import com.example.devSync.service.UtilisateurService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,12 +23,12 @@ import java.io.IOException;
 public class AboutWebService extends HttpServlet {
     private UtilisateurService utilisateurService;
     private TaskService taskService;
-    private TaskHistoryService taskHistoryService;
+    private UserTokenService userTokenService;
 
     @Override
     public void init() throws ServletException {
         utilisateurService = new UtilisateurService();
-        taskHistoryService=new TaskHistoryService();
+        userTokenService=new UserTokenService();
         taskService=new TaskService();
     }
     @Override
@@ -40,8 +42,11 @@ public class AboutWebService extends HttpServlet {
                 request.getRequestDispatcher("/views/aboutMe.jsp").forward(request, response);
 
             } else if (currentUser.getRole() == Role.USER) {
-
+                int countTokenRemplace = userTokenService.findByUserAndTokenType(currentUser,"Remplacement").getTokenCount();
+                int countTokenSuppress = userTokenService.findByUserAndTokenType(currentUser,"Suppression").getTokenCount();
                 request.setAttribute("currentUser", currentUser);
+                request.setAttribute("countTokenRemplace", countTokenRemplace);
+                request.setAttribute("countTokenSuppress", countTokenSuppress);
                 request.getRequestDispatcher("/views/aboutMe.jsp").forward(request, response);
 
             }

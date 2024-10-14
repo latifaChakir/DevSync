@@ -2,14 +2,12 @@ package com.example.devSync.dao.impl;
 
 import com.example.devSync.bean.Task;
 import com.example.devSync.bean.Tag;
+import com.example.devSync.bean.TaskHistory;
 import com.example.devSync.bean.Utilisateur;
 import com.example.devSync.bean.enums.Status;
 import com.example.devSync.dao.TaskDao;
 import com.example.devSync.dao.UtilisateurDao;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.*;
 import org.hibernate.Hibernate;
 
 import java.time.LocalDate;
@@ -109,7 +107,17 @@ public class TaskDaoImpl implements TaskDao, AutoCloseable {
                 task.getTags().forEach(tag -> tag.getTasks().remove(task));
                 task.getTags().clear();
 
+                List<TaskHistory> taskHistories = entityManager.createQuery(
+                                "SELECT th FROM TaskHistory th WHERE th.task.id = :taskId", TaskHistory.class)
+                        .setParameter("taskId", taskId)
+                        .getResultList();
+
+                for (TaskHistory taskHistory : taskHistories) {
+                    entityManager.remove(taskHistory);
+                }
                 entityManager.remove(task);
+            } else {
+                throw new EntityNotFoundException("Task with ID " + taskId + " not found.");
             }
 
             transaction.commit();
@@ -117,7 +125,7 @@ public class TaskDaoImpl implements TaskDao, AutoCloseable {
             if (transaction.isActive()) {
                 transaction.rollback();
             }
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error while deleting task: " + e.getMessage(), e);
         } finally {
             entityManager.close();
         }

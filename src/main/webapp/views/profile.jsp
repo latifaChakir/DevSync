@@ -28,6 +28,14 @@
     <div class="px-5 main-container">
     <div class="row">
         <div class="row"  >
+            <% if (session.getAttribute("errorMessage") != null) { %>
+            <div class="error">
+                <div class="alert alert-danger">
+                    <%= session.getAttribute("errorMessage") %>
+                </div>
+            </div>
+            <% session.removeAttribute("errorMessage"); %>
+            <% } %>
             <h4 class="section-title">Tasks Assigned To Me :</h4>
             <div class="table-responsive" style="width: 100%">
                 <table class="table table-hover mb-0 mt-4">

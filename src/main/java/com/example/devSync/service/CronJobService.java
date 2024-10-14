@@ -50,7 +50,7 @@ public class CronJobService {
 
         Trigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity("resetDeleteTokensTrigger", "group1")
-                .withSchedule(CronScheduleBuilder.cronSchedule("0 0 0 * * ?"))
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 0 0 1 * ?"))
                 .build();
 
         scheduler.scheduleJob(jobDetail, trigger);

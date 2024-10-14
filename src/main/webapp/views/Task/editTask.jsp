@@ -67,12 +67,17 @@
                     </c:if>
                     <div class="form-group">
                         <label>Tags</label>
-                        <select  class="form-control js-example-basic-multiple "  name="tags" multiple="multiple" data-placeholder="Choose tags" style="width: 100%">
+                        <select class="form-control js-example-basic-multiple" name="tags" multiple="multiple" data-placeholder="Choose tags" style="width: 100%">
                             <c:forEach var="tag" items="${tags}">
-                                <option value="${tag.id}">${tag.name}</option>
+                                <option value="${tag.id}"
+                                        <c:if test="${not empty selectedTags and selectedTags.contains(tag.id)}">selected</c:if>
+                                >
+                                        ${tag.name}
+                                </option>
                             </c:forEach>
                         </select>
                     </div>
+
                 </div>
                 <div class="modal-footer">
                     <a href="/DevSync/tasks"><input type="button" class="btn btn-primary" data-dismiss="modal" value="Cancel"></a>

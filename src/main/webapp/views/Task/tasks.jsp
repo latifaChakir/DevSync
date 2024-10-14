@@ -15,8 +15,11 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
+<div class="container-fluid">
 <div class="row ">
 <jsp:include page="../sidebar.jsp" />
+    <div class="col-md-10">
+
 <div class="px-2">
     <% if (session.getAttribute("errorMessage") != null) { %>
     <div class="error">
@@ -89,7 +92,7 @@
 
         </div>
     </div>
-</div>
+</div></div></div>
 <div id="addEmployeeModal" class="modal fade bd-example-modal-lg">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
@@ -153,7 +156,7 @@
         color: #566787;
         background: #f5f5f5;
         font-family: 'Varela Round', sans-serif;
-        font-size: 13px;
+        font-size: 15px;
     }
     .table-responsive {
         margin: 30px 0;

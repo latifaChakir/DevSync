@@ -94,7 +94,8 @@ public class TaskHistoryService {
     public List<TaskHistory> getMyRequestToApproved(Utilisateur user) {
         List<TaskHistory> allTaskHistory = taskHistoryDao.findAll();
         List<TaskHistory> tasksWrittenByUser = allTaskHistory.stream()
-                .filter(taskHistory -> taskHistory.getTask().getCreatedBy().getId().equals(user.getId()))
+                .filter(taskHistory -> taskHistory.getTask().getCreatedBy().getId().equals(user.getId()) &&
+                        !taskHistory.getIsApproved())
                 .collect(Collectors.toList());
 
         return tasksWrittenByUser;

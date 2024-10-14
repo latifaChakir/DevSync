@@ -68,6 +68,15 @@
     <url-pattern>/dashboard</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>AboutWebService</servlet-name>
+    <servlet-class>com.example.devSync.webService.AboutWebService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AboutWebService</servlet-name>
+    <url-pattern>/aboutMe</url-pattern>
+  </servlet-mapping>
+
   <listener>
     <listener-class>com.example.devSync.util.QuartzInitializerListener</listener-class>
   </listener>

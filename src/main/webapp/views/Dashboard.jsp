@@ -84,9 +84,7 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <!-- Sidebar -->
         <jsp:include page="sidebar.jsp" />
-        <!-- Main content -->
         <div class="col-md-10">
             <div class="col-lg-12">
                 <h1>Dashboard</h1>

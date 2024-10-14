@@ -45,7 +45,7 @@ public class Task {
     @JoinColumn(name = "assigned_to", nullable = true)
     private Utilisateur assignedTo;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE})
     @JoinTable(
             name = "tasks_tags",
             joinColumns = @JoinColumn(name = "task_id"),
@@ -66,7 +66,7 @@ public class Task {
                 ", deletedAt=" + deletedAt +
                 ", createdBy=" + createdBy +
                 ", assignedTo=" + assignedTo +
-
                 '}';
+
     }
 }

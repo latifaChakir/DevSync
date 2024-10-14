@@ -20,6 +20,6 @@ public class Tag {
 
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "tags")
     private List<Task> tasks;
 }

@@ -34,10 +34,13 @@
             <a class="nav-link" href="/DevSync/tags?action=getAll">Manage Tags</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/DevSync/profil">User Profil</a>
+            <a class="nav-link" href="/DevSync/profil">Others Tasks</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/DevSync/utilisateurs">Manage Users</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/DevSync/aboutMe">Profil</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/DevSync/login">Logout</a>

@@ -66,7 +66,9 @@ public class TaskHistoryWebService extends HttpServlet {
                     break;
                 }
                 taskHistoryService.approveRemplace(taskHistory);
-                response.sendRedirect(request.getContextPath() + "/profil");
+                long TaskID=taskHistory.getTask().getId();
+
+                response.sendRedirect(request.getContextPath() + "/tasks?id=" + TaskID + "&action=edit");
                 break;
             case "refuser":
                 TaskHistory taskHistory1 = taskHistoryService.getTaskHistoryById(taskHId);

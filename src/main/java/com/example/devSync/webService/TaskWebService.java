@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @WebServlet("/tasks")
 public class TaskWebService extends HttpServlet {
@@ -45,9 +46,13 @@ public class TaskWebService extends HttpServlet {
                 Task task = taskService.getTaskById(taskId);
                 if (task != null) {
                     List<Tag> tags=tagService.getAllTags();
+                    List<Long> selectedTags = task.getTags().stream()
+                            .map(Tag::getId)
+                            .collect(Collectors.toList());
                     List<Utilisateur> utilisateurList=utilisateurService.getAllUtilisateurs();
                     request.setAttribute("task", task);
                     request.setAttribute("tags", tags);
+                    request.setAttribute("selectedTags", selectedTags);
                     request.setAttribute("currentUser", currentUser);
                     request.setAttribute("utilisateurList", utilisateurList);
                     request.getRequestDispatcher("/views/Task/editTask.jsp").forward(request, response);

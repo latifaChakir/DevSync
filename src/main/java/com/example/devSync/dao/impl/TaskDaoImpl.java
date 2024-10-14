@@ -3,12 +3,14 @@ package com.example.devSync.dao.impl;
 import com.example.devSync.bean.Task;
 import com.example.devSync.bean.Tag;
 import com.example.devSync.bean.Utilisateur;
+import com.example.devSync.bean.enums.Status;
 import com.example.devSync.dao.TaskDao;
 import com.example.devSync.dao.UtilisateurDao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import org.hibernate.Hibernate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -45,11 +47,28 @@ public class TaskDaoImpl implements TaskDao, AutoCloseable {
 
     @Override
     public Optional<Task> findById(Long id) {
-        try (EntityManager entityManager = emf.createEntityManager()) {
-            Task task = entityManager.find(Task.class, id);
-            return Optional.ofNullable(task);
+        EntityManager entityManager = emf.createEntityManager();
+        Task task = null;
+
+        try {
+            entityManager.getTransaction().begin();
+            task = entityManager.find(Task.class, id);
+            if (task != null) {
+                Hibernate.initialize(task.getTags());
+            }
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
         }
+
+        return Optional.ofNullable(task);
     }
+
 
     @Override
     public List<Task> findAll() {
@@ -224,6 +243,25 @@ public class TaskDaoImpl implements TaskDao, AutoCloseable {
         }
     }
 
+    public void changeStatus(long taskId, Status status) {
+        try (EntityManager entityManager = emf.createEntityManager()) {
+            EntityTransaction transaction = entityManager.getTransaction();
+            try {
+                transaction.begin();
+                Task task = entityManager.find(Task.class, taskId);
+                if (task != null) {
+                    task.setStatus(status);
+                    entityManager.merge(task);
+                }
+                transaction.commit();
+            } catch (Exception e) {
+                if (transaction.isActive()) {
+                    transaction.rollback();
+                }
+                throw new RuntimeException(e);
+            }
+        }
+    }
 
 
     @Override

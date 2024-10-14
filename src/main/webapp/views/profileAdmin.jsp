@@ -20,54 +20,22 @@
 
 </head>
 <body>
-<div class="container mb-4 main-container">
+<div class="container-fluid">
+
+<div class="row">
+    <jsp:include page="sidebar.jsp" />
+<div class="col-md-10">
+<div class="px-5 main-container">
     <div class="row">
-        <div class="col-lg-4 pb-5">
-            <!-- Account Sidebar-->
-            <div class="author-card pb-3">
-                <div class="author-card-cover" style="background-image: url(https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward points to spend"><i class="fa fa-award text-md"></i>&nbsp;290 points</a></div>
-                <div class="author-card-profile">
-                    <div class="author-card-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Daniel Adams">
-                    </div>
-                    <div class="author-card-details">
-                        <h5 class="author-card-name text-lg">${currentUser.nom} ${currentUser.prenom}</h5><span class="author-card-position">${currentUser.email}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="wizard">
-                <nav class="list-group list-group-flush">
-                    <a class="list-group-item active" href="#">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div><i class="fa fa-shopping-bag mr-1 text-muted"></i>
-                                <div class="d-inline-block font-weight-medium text-uppercase">Orders List</div>
-                            </div><span class="badge badge-secondary">6</span>
-                        </div>
-                    </a><a class="list-group-item" href="/DevSync/dashboard" target="__blank"><i class="fa fa-user text-muted"></i>Dashboard</a><a class="list-group-item" href="#"><i class="fa fa-map-marker text-muted"></i>Addresses</a>
-                    <a class="list-group-item" href="/DevSync/tags?action=getAll" tagert="__blank">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div><i class="fa fa-heart mr-1 text-muted"></i>
-                                <div class="d-inline-block font-weight-medium text-uppercase">Manage Tags</div>
-                            </div><span class="badge badge-secondary">3</span>
-                        </div>
-                    </a>
-                    <a class="list-group-item" href="/DevSync/tasks">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div><i class="fa fa-tag mr-1 text-muted"></i>
-                                <div class="d-inline-block font-weight-medium text-uppercase">Manage Tasks</div>
-                            </div><span class="badge badge-secondary">4</span>
-                        </div>
-                    </a>
-                </nav>
-            </div>
-        </div>
-        <div class="col-lg-8 pb-5">
-            <h4>Tasks To Approved </h4>
-            <div class="table-responsive">
+        <div class="row">
+            <h2 class="section-title">Tasks To Approved </h2>
+            <div class="table-responsive" style="width: 100%">
                 <table class="table table-hover mb-0">
                     <thead>
                     <tr>
                         <th>id</th>
                         <th>Task Title</th>
+                        <th>Assigned To</th>
                         <th>Type de modification </th>
                         <th>Date de modification </th>
                         <th>Actions</th>
@@ -78,6 +46,7 @@
                         <tr>
                              <td><c:out value="${task.id}" /></td>
                              <td><c:out value="${task.getTask().getTitle()}" /></td>
+                             <td><c:out value="${task.getTask().getAssignedTo().getNom()}" /></td>
                              <td><c:out value="${task.typeModification}" /></td>
                              <td><c:out value="${task.modificationDate}" /></td>
                             <td>
@@ -95,6 +64,9 @@
             </div>
         </div>
     </div>
+</div>
+</div>
+</div>
 </div>
 </body>
 
@@ -264,6 +236,16 @@
         margin-bottom: -1px;
         background-color: #fff;
         border: 1px solid rgba(0,0,0,0.125);
+    }
+    .section-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        text-align: start;
+        padding: 10px 0;
+        border-bottom: 2px solid #007bff;
+        margin-bottom: 20px;
+        width: 100%;
     }
 </style>
 </html>

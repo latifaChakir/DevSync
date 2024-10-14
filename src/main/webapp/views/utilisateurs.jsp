@@ -15,8 +15,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div class="container-fluid">
 <div class="row ">
 <jsp:include page="sidebar.jsp" />
+    <div class="col-md-10">
 <div class="px-2">
     <div class="table-responsive mt-2">
         <div class="table-wrapper">
@@ -82,6 +84,7 @@
         </div>
     </div>
 </div>
+</div></div>
 <div id="addEmployeeModal" class="modal fade bd-example-modal-lg">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
@@ -136,7 +139,7 @@
         color: #566787;
         background: #f5f5f5;
         font-family: 'Varela Round', sans-serif;
-        font-size: 13px;
+        font-size: 15px;
     }
     .table-responsive {
         margin: 30px 0;

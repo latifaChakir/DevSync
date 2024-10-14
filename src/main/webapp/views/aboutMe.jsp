@@ -21,66 +21,47 @@
 </head>
 <body>
 <div class="container-fluid">
-
 <div class="row">
     <jsp:include page="sidebar.jsp" />
     <div class="col-md-10">
-    <div class="px-5 main-container">
+<div class="px-4 main-container">
     <div class="row">
-        <div class="row"  >
-            <h4 class="section-title">Tasks Assigned To Me :</h4>
-            <div class="table-responsive" style="width: 100%">
-                <table class="table table-hover mb-0 mt-4">
-                    <thead>
-                    <tr>
-                        <th>Task</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                        <th>DeadLine</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="task" items="${myTasks}">
-                            <tr>
-                            <td><c:out value="${task.title}" /></td>
-                            <td><c:out value="${task.description}" /></td>
-                                <td>
-                                    <form action="tasks?action=changeStatus" method="post" style="display: inline;">
-                                        <input type="hidden" name="id" value="${task.id}" />
-                                        <div class="d-flex ">
-                                        <select name="status" class="badge m-0 form-control select-status
-                                            <c:if test="${task.status == 'A_FAIRE'}">A_FAIRE</c:if>
-                                            <c:if test="${task.status == 'EN_COURS'}">EN_COURS</c:if>
-                                            <c:if test="${task.status == 'TERMINEE'}">TERMINEE</c:if>">
-                                            <option value="A_FAIRE"  <c:if test="${task.status == 'A_FAIRE'}">selected</c:if>>A_FAIRE</option>
-                                            <option value="EN_COURS" <c:if test="${task.status == 'EN_COURS'}">selected</c:if>>EN_COURS</option>
-                                            <option value="TERMINEE" <c:if test="${task.status == 'TERMINEE'}">selected</c:if>>TERMINEE</option>
-                                        </select>
-                                        <button type="submit" style="border: none"><i class="material-icons" data-toggle="tooltip" title="Soumettre" style="color: green;">check</i>
-
-                                        </button>
-                                        </div>
-                                    </form>
-                                </td>
-
-                                <td><c:out value="${task.deadLine}" /></td>
-                                <c:if test="${!currentUser.getId().equals(task.createdBy.getId())}">
-                                    <td>
-                                        <a href="taskHistory?id=${task.id}&newUserId=${currentUser.getId()}&action=remplace" class="edit">
-                                            <i class="material-icons" data-toggle="tooltip" title="Remplacer">swap_horiz</i>
-                                        </a>
-                                        <a href="taskHistory?id=${task.id}&newUserId=${currentUser.getId()}&action=remove" class="delete">
-                                            <i class="material-icons" data-toggle="tooltip" title="Supprimer" style="color: darkred">&#xE872;</i>
-                                        </a>
-
-                                    </td>
-                                </c:if>
-
-                            </tr>
-                        </c:forEach>
-
-                    </tbody>
-                </table>
+        <div class="col-lg-12 ">
+            <!-- Account Sidebar-->
+            <div class="author-card pb-3">
+                <div class="author-card-cover" style="background-image: url(https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward points to spend"><i class="fa fa-award text-md"></i>&nbsp;290 points</a></div>
+                <div class="author-card-profile">
+                    <div class="author-card-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Daniel Adams">
+                    </div>
+                    <div class="author-card-details">
+                        <h5 class="author-card-name text-lg">${currentUser.nom} ${currentUser.prenom}</h5><span class="author-card-position">${currentUser.email}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="wizard">
+                <nav class="list-group list-group-flush">
+                    <a class="list-group-item active" href="#">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><i class="fa fa-shopping-bag mr-1 text-muted"></i>
+                                <div class="d-inline-block font-weight-medium text-uppercase">Orders List</div>
+                            </div><span class="badge badge-secondary">6</span>
+                        </div>
+                    </a><a class="list-group-item" href="/DevSync/dashboard" target="__blank"><i class="fa fa-user text-muted"></i>Dashboard</a><a class="list-group-item" href="#"><i class="fa fa-map-marker text-muted"></i>Addresses</a>
+                    <a class="list-group-item" href="/DevSync/tags?action=getAll" tagert="__blank">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><i class="fa fa-heart mr-1 text-muted"></i>
+                                <div class="d-inline-block font-weight-medium text-uppercase">Manage Tags</div>
+                            </div><span class="badge badge-secondary">3</span>
+                        </div>
+                    </a>
+                    <a class="list-group-item" href="/DevSync/tasks">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><i class="fa fa-tag mr-1 text-muted"></i>
+                                <div class="d-inline-block font-weight-medium text-uppercase">Manage Tasks</div>
+                            </div><span class="badge badge-secondary">4</span>
+                        </div>
+                    </a>
+                </nav>
             </div>
         </div>
     </div>
@@ -92,6 +73,7 @@
 
 <style>
     body{
+        font-size: medium;
         background:#eee;
     }
     .main-container{
@@ -144,7 +126,7 @@
         vertical-align: middle;
     }
     .author-card .author-card-profile .author-card-avatar {
-        width: 85px;
+        width: 90px;
         border-radius: 50%;
         box-shadow: 0 8px 20px 0 rgba(0, 0, 0, .15);
         overflow: hidden;
@@ -257,37 +239,5 @@
         background-color: #fff;
         border: 1px solid rgba(0,0,0,0.125);
     }
-    .select-status {
-        padding: 5px;
-        border: none;
-        border-radius: 5px;
-        color: white;
-    }
-
-    .select-status.A_FAIRE {
-        background-color: #ffc107;
-    }
-    .select-status.NON_EFFECTUER {
-        background-color: darkred;
-    }
-
-    .select-status.EN_COURS {
-        background-color: #17a2b8;
-    }
-
-    .select-status.TERMINEE {
-        background-color: #28a745;
-    }
-    .section-title {
-        font-size: 24px;
-        font-weight: bold;
-        color: #333;
-        text-align: start;
-        padding: 10px 0;
-        border-bottom: 2px solid #007bff;
-        margin-bottom: 20px;
-        width: 100%;
-    }
-
 </style>
 </html>

@@ -1,12 +1,15 @@
 package com.example.devSync;
 import com.example.devSync.bean.Task;
+import com.example.devSync.bean.enums.Status;
 import com.example.devSync.dao.TaskDao;
 import com.example.devSync.dao.UtilisateurDao;
 import com.example.devSync.dao.impl.TaskDaoImpl;
 import com.example.devSync.dao.impl.UtilisateurDaoImpl;
+import com.example.devSync.service.TaskService;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,7 +22,11 @@ public class Main {
 //
 //        List<Task> tasks = taskDao.findByTagsAndDateRangeAndCreator(tag, startDate, endDate,created);
 //        tasks.forEach(task -> System.out.println(task));
-        UtilisateurDao utilisateurDao = new UtilisateurDaoImpl();
-        utilisateurDao.delete(11);
+        TaskService taskService=new TaskService();
+        long taskid=19L;
+        Task task = taskService.getTaskById(taskid);
+        System.out.println("Task : "+task.getTags());
+
+
     }
 }

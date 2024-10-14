@@ -1,6 +1,7 @@
 package com.example.devSync.dao;
 
 import com.example.devSync.bean.Task;
+import com.example.devSync.bean.enums.Status;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ public interface TaskDao {
     public List<Task> findByName(String name);
     public List<Task> getTasksByAssigneeId(Long id);
     public List<Task> getTasksByCreatorId(Long id);
-
+    public void changeStatus(long id, Status  status);
     List<Task> findOverdueTasks(LocalDate date);
     List<Task> findByTagsAndDateRangeAndCreator(String tag, LocalDateTime startDate, LocalDateTime endDate, Long creatorId);
 }

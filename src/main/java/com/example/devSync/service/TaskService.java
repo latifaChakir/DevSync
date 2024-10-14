@@ -71,11 +71,7 @@ public class TaskService {
     }
 
     public void changeStatus(long taskId, Status status) {
-        Task task = getTaskById(taskId);
-        if (task != null) {
-            task.setStatus(status);
-            updateTask(task);
-        }
+        taskDao.changeStatus(taskId, status);
     }
 
     public List<Task> findOverdueTasks(LocalDate date) {

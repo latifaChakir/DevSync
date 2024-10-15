@@ -1,13 +1,24 @@
 package com.example.devSync.service;
+
 import com.example.devSync.bean.Utilisateur;
 import com.example.devSync.dao.UtilisateurDao;
 import com.example.devSync.dao.impl.UtilisateurDaoImpl;
 import org.mindrot.jbcrypt.BCrypt;
+
 import java.util.List;
 import java.util.Optional;
 
 public class UtilisateurService {
-    private UtilisateurDao utilisateurDAO = new UtilisateurDaoImpl();
+
+    private UtilisateurDao utilisateurDAO;
+
+    public UtilisateurService(UtilisateurDao utilisateurDAO) {
+        this.utilisateurDAO = utilisateurDAO;
+    }
+
+    public UtilisateurService() {
+        this.utilisateurDAO = new UtilisateurDaoImpl();
+    }
 
     public void createUtilisateur(Utilisateur utilisateur) {
         utilisateurDAO.save(utilisateur);
@@ -32,13 +43,12 @@ public class UtilisateurService {
     public String hashPassword(String plainPassword) {
         return BCrypt.hashpw(plainPassword, BCrypt.gensalt(12));
     }
+
     public Utilisateur login(String username, String password) {
-        Utilisateur u= utilisateurDAO.findByUsername(username);
-            if (u !=null && BCrypt.checkpw(password, u.getMotDePasse())) {
-                return u;
-            }
+        Utilisateur u = utilisateurDAO.findByUsername(username);
+        if (u != null && BCrypt.checkpw(password, u.getMotDePasse())) {
+            return u;
+        }
         return null;
     }
-
-
 }

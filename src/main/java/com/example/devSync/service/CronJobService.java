@@ -69,8 +69,7 @@ public class CronJobService {
 
         Trigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity("taskVerificationTrigger", "group1")
-                .withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?")) // Exécution toutes les 5 secondes
-                .build();
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 0 0 * * ?"))                .build();
 
         scheduler.scheduleJob(jobDetail, trigger);
         System.out.println("Task verification job scheduled.");

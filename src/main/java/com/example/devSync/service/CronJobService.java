@@ -6,13 +6,13 @@ import org.quartz.impl.StdSchedulerFactory;
 public class CronJobService {
     private Scheduler scheduler;
 
-    public CronJobService(UserTokenService userTokenService) {
+    public CronJobService(UserTokenService userTokenService, TaskService taskService) {
         try {
             scheduler = StdSchedulerFactory.getDefaultScheduler();
             scheduler.start();
             scheduleResetTokensJob(userTokenService);
             scheduleResetDeleteTokensJob(userTokenService);
-            scheduleTaskVerificationJob();
+            scheduleTaskVerificationJob(taskService);
             scheduleRemplaceTask();
         } catch (SchedulerException e) {
             e.printStackTrace();
@@ -58,14 +58,18 @@ public class CronJobService {
     }
 
 
-    private void scheduleTaskVerificationJob() throws SchedulerException {
+    private void scheduleTaskVerificationJob(TaskService taskService) throws SchedulerException {
+        JobDataMap jobDataMap = new JobDataMap();
+        jobDataMap.put("taskService", taskService);
+
         JobDetail jobDetail = JobBuilder.newJob(TaskVerificationJob.class)
                 .withIdentity("taskVerificationJob", "group1")
+                .usingJobData(jobDataMap)
                 .build();
 
         Trigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity("taskVerificationTrigger", "group1")
-                .withSchedule(CronScheduleBuilder.dailyAtHourAndMinute(23, 59))  // Every day at 23:59
+                .withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?")) // Exécution toutes les 5 secondes
                 .build();
 
         scheduler.scheduleJob(jobDetail, trigger);

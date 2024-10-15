@@ -74,11 +74,10 @@ public class TaskService {
         taskDao.changeStatus(taskId, status);
     }
 
-    public List<Task> findOverdueTasks(LocalDate date) {
+    public List<Task> findOverdueTasks(LocalDateTime date) {
         List<Task> overdueTasks = taskDao.findOverdueTasks(date);
         for (Task task : overdueTasks) {
-            task.setStatus(Status.NON_EFFECTUER);
-            updateTask(task);
+            changeStatus(task.getId(),Status.NON_EFFECTUER);
         }
         return overdueTasks;
     }

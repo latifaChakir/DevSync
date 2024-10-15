@@ -27,8 +27,6 @@ public class Task {
 
     @Enumerated(EnumType.STRING)
     private Status status;
-
-    @FutureOrPresent(message = "Deadline must be in the future or present.")
     private LocalDateTime deadLine;
 
     private LocalDateTime createdAt;

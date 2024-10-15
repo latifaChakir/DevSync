@@ -6,6 +6,7 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class TaskVerificationJob implements Job {
@@ -16,11 +17,15 @@ public class TaskVerificationJob implements Job {
 
         System.out.println("Starting task verification job");
         try {
-            List<Task> overdueTasks = taskService.findOverdueTasks(LocalDate.now());
-            for (Task task : overdueTasks) {
-                task.setStatus(Status.NON_EFFECTUER);
-                taskService.updateTask(task);
+            LocalDate currentDate = LocalDate.now();
+            LocalDateTime startOfDay = currentDate.atStartOfDay();  // Ensure this is LocalDateTime
+
+            try {
+                taskService.findOverdueTasks(startOfDay);  // Pass LocalDateTime
+            } catch (Exception e) {
+                throw new JobExecutionException(e);
             }
+
             System.out.println("Overdue tasks marked as non effectuées.");
         } catch (Exception e) {
             System.out.println("Error during task verification");

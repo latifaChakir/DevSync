@@ -18,6 +18,6 @@ public interface TaskDao {
     public List<Task> getTasksByAssigneeId(Long id);
     public List<Task> getTasksByCreatorId(Long id);
     public void changeStatus(long id, Status  status);
-    List<Task> findOverdueTasks(LocalDate date);
+    List<Task> findOverdueTasks(LocalDateTime date);
     List<Task> findByTagsAndDateRangeAndCreator(String tag, LocalDateTime startDate, LocalDateTime endDate, Long creatorId);
 }

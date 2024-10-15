@@ -199,13 +199,14 @@ public class TaskDaoImpl implements TaskDao, AutoCloseable {
     }
 
     @Override
-    public List<Task> findOverdueTasks(LocalDate date) {
+    public List<Task> findOverdueTasks(LocalDateTime dateTime) {
         try (EntityManager entityManager = emf.createEntityManager()) {
-            return entityManager.createQuery("SELECT t FROM Task t WHERE t.deadLine <= :date AND t.status!= 'TERMINEE'", Task.class)
-                   .setParameter("date", date)
-                   .getResultList();
+            return entityManager.createQuery("SELECT t FROM Task t WHERE t.deadLine <= :date AND t.status != 'TERMINEE'", Task.class)
+                    .setParameter("date", dateTime)
+                    .getResultList();
         }
     }
+
     @Override
     public List<Task> findByTagsAndDateRangeAndCreator(String tag, LocalDateTime startDate, LocalDateTime endDate, Long creatorId) {
         List<Task> tasks = new ArrayList<>();

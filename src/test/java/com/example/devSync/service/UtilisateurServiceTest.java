@@ -52,7 +52,7 @@ public class UtilisateurServiceTest {
         utilisateur.setPrenom("Doe");
         utilisateurService.updateUtilisateur(utilisateur);
         verify(utilisateurDaoMock).update(utilisateur);
-        assertEquals("CHAKIR", utilisateur.getNom(), "Le nom de l'utilisateur doit être 'John'");
+        assertEquals("CHAKIR", utilisateur.getNom(), "Le nom de l'utilisateur doit être 'CHAKIR'");
         assertEquals("Doe", utilisateur.getPrenom(), "Le prénom de l'utilisateur doit être 'Doe'");
     }
 

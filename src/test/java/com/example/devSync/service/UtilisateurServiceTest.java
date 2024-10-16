@@ -56,4 +56,28 @@ public class UtilisateurServiceTest {
         assertEquals("Doe", utilisateur.getPrenom(), "Le prénom de l'utilisateur doit être 'Doe'");
     }
 
+    @Test
+    void testDeleteUtilisateur() {
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setId(1L);
+        utilisateurService.deleteUtilisateur(utilisateur.getId());
+        verify(utilisateurDaoMock).delete(1L);
+    }
+
+    @Test
+    void testGetUtilisateur() {
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setId(1L);
+        when(utilisateurDaoMock.findById(1L)).thenReturn(java.util.Optional.of(utilisateur));
+        assertEquals(utilisateur, utilisateurService.getUtilisateur(1L).orElse(null), "L'utilisateur retourné doit être le même que celui créé");
+    }
+    @Test
+    void testGetAllUtilisateurs() {
+        when(utilisateurDaoMock.findAll()).thenReturn(java.util.Arrays.asList(new Utilisateur(), new Utilisateur()));
+        assertEquals(2, utilisateurService.getAllUtilisateurs().size(), "Le nombre d'utilisateurs retournés doit être 2");
+    }
+
+
+
+
 }

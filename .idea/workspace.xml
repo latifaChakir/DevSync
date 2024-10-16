@@ -2,14 +2,18 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="DevSync:war" />
+      <artifact name="DevSync:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0438aab0-59ca-4920-9a4b-bac4589cfee9" name="Changes" comment="" />
+    <list default="true" id="0438aab0-59ca-4920-9a4b-bac4589cfee9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/devSync/service/TagService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/devSync/service/UtilisateurServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/devSync/service/UtilisateurServiceTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -112,9 +116,9 @@
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <file path="$PROJECT_DIR$/target/DevSync.war">
+        <artifact name="DevSync:war exploded">
           <settings />
-        </file>
+        </artifact>
       </deployment>
       <server-settings>
         <option name="SERVER" />
@@ -208,7 +212,9 @@
       </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="false" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="DevSync:war exploded" />
+        </option>
       </method>
     </configuration>
     <list>

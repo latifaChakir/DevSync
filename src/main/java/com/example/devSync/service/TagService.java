@@ -8,7 +8,13 @@ import java.util.List;
 import java.util.Optional;
 
 public class TagService {
-    private TagDao tagDao=new TagDaoImpl();
+    private TagDao tagDao;
+    public TagService() {
+        this.tagDao = new TagDaoImpl();
+    }
+    public TagService(TagDao tagDao) {
+        this.tagDao = tagDao;
+    }
 
     public List<Tag> getAllTags() {
         return tagDao.findAll();

@@ -1,20 +1,17 @@
 package com.example.devSync.service;
 
 import com.example.devSync.bean.Utilisateur;
+import com.example.devSync.bean.enums.Role;
 import com.example.devSync.dao.UtilisateurDao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
 public class UtilisateurServiceTest {
 
     @Mock
@@ -29,10 +26,15 @@ public class UtilisateurServiceTest {
     }
 
     @Test
-    void testCreateUtilisateurWithAssert() {
+    void testCreateUtilisateurWithAllAttributes() {
         Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setNomUtilisateur("johnDoe");
+        utilisateur.setMotDePasse("securePassword123");
         utilisateur.setNom("John");
         utilisateur.setPrenom("Doe");
+        utilisateur.setEmail("john.doe@example.com");
+        utilisateur.setRole(Role.MANAGER);
+
         when(utilisateurDaoMock.save(utilisateur)).thenAnswer(invocation -> {
             Utilisateur savedUser = invocation.getArgument(0);
             savedUser.setId(1L);
@@ -40,20 +42,34 @@ public class UtilisateurServiceTest {
         });
 
         utilisateurService.createUtilisateur(utilisateur);
-
         assertNotNull(utilisateur.getId(), "L'ID de l'utilisateur ne doit pas être null après la sauvegarde");
-        verify(utilisateurDaoMock).save(utilisateur);
+        verify(utilisateurDaoMock, times(1)).save(utilisateur);
+        assertEquals("johnDoe", utilisateur.getNomUtilisateur(), "Le nom d'utilisateur doit être 'johnDoe'");
+        assertEquals("John", utilisateur.getNom(), "Le nom doit être 'John'");
+        assertEquals("Doe", utilisateur.getPrenom(), "Le prénom doit être 'Doe'");
+        assertEquals("john.doe@example.com", utilisateur.getEmail(), "L'email doit être 'john.doe@example.com'");
+        assertEquals(Role.MANAGER, utilisateur.getRole(), "Le rôle doit être MANAGER");
     }
+
     @Test
-    void testUpdateUtilisateur() {
+    void testUpdateUtilisateurWithAllAttributes() {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setId(1L);
-        utilisateur.setNom("CHAKIR");
+        utilisateur.setNomUtilisateur("johnUpdated");
+        utilisateur.setMotDePasse("newPassword456");
+        utilisateur.setNom("John");
         utilisateur.setPrenom("Doe");
+        utilisateur.setEmail("john.updated@example.com");
+        utilisateur.setRole(Role.USER);
         utilisateurService.updateUtilisateur(utilisateur);
-        verify(utilisateurDaoMock).update(utilisateur);
-        assertEquals("CHAKIR", utilisateur.getNom(), "Le nom de l'utilisateur doit être 'CHAKIR'");
-        assertEquals("Doe", utilisateur.getPrenom(), "Le prénom de l'utilisateur doit être 'Doe'");
+
+        verify(utilisateurDaoMock, times(1)).update(utilisateur);
+        assertEquals("johnUpdated", utilisateur.getNomUtilisateur(), "Le nom d'utilisateur doit être 'johnUpdated'");
+        assertEquals("newPassword456", utilisateur.getMotDePasse(), "Le mot de passe doit être 'newPassword456'");
+        assertEquals("John", utilisateur.getNom(), "Le nom doit être 'John'");
+        assertEquals("Doe", utilisateur.getPrenom(), "Le prénom doit être 'Doe'");
+        assertEquals("john.updated@example.com", utilisateur.getEmail(), "L'email doit être 'john.updated@example.com'");
+        assertEquals(Role.USER, utilisateur.getRole(), "Le rôle doit être USER");
     }
 
     @Test
@@ -61,23 +77,31 @@ public class UtilisateurServiceTest {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setId(1L);
         utilisateurService.deleteUtilisateur(utilisateur.getId());
-        verify(utilisateurDaoMock).delete(1L);
+        verify(utilisateurDaoMock, times(1)).delete(1L);
     }
 
     @Test
     void testGetUtilisateur() {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setId(1L);
+        utilisateur.setNomUtilisateur("johnDoe");
+        utilisateur.setMotDePasse("securePassword123");
+        utilisateur.setNom("John");
+        utilisateur.setPrenom("Doe");
+        utilisateur.setEmail("john.doe@example.com");
+        utilisateur.setRole(Role.MANAGER);
+
         when(utilisateurDaoMock.findById(1L)).thenReturn(java.util.Optional.of(utilisateur));
-        assertEquals(utilisateur, utilisateurService.getUtilisateur(1L).orElse(null), "L'utilisateur retourné doit être le même que celui créé");
+        Utilisateur result = utilisateurService.getUtilisateur(1L).orElse(null);
+        assertEquals(utilisateur, result, "L'utilisateur retourné doit être le même que celui attendu");
+        verify(utilisateurDaoMock, times(1)).findById(1L);
     }
+
     @Test
     void testGetAllUtilisateurs() {
         when(utilisateurDaoMock.findAll()).thenReturn(java.util.Arrays.asList(new Utilisateur(), new Utilisateur()));
-        assertEquals(2, utilisateurService.getAllUtilisateurs().size(), "Le nombre d'utilisateurs retournés doit être 2");
+        var utilisateurs = utilisateurService.getAllUtilisateurs();
+        assertEquals(2, utilisateurs.size(), "Le nombre d'utilisateurs retournés doit être 2");
+        verify(utilisateurDaoMock, times(1)).findAll();
     }
-
-
-
-
 }

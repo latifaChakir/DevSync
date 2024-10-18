@@ -21,10 +21,10 @@ public class TaskHistoryService {
         userTokenService = new UserTokenService();
         taskHistoryDao = new TaskHistoryDaoImpl();
     }
-    public TaskHistoryService(TaskService taskService, UserTokenService userTokenService){
+    public TaskHistoryService(TaskHistoryDao taskHistoryDao,TaskService taskService, UserTokenService userTokenService){
         this.taskService = taskService;
         this.userTokenService = userTokenService;
-        taskHistoryDao = new TaskHistoryDaoImpl();
+        this.taskHistoryDao=taskHistoryDao;
     }
 
     //    public void addTaskHistory(TaskHistory taskHistory){

@@ -16,8 +16,8 @@ public class UserTokenService {
         this.utilisateurService=new UtilisateurService();
     }
     public UserTokenService(UserTokenDao userTokenDao, UtilisateurService utilisateurService) {
-        this.userTokenDao=userTokenDao;
-        this.utilisateurService=new UtilisateurService();
+        this.userTokenDao = userTokenDao;
+        this.utilisateurService = utilisateurService;
     }
 
     public void save(UserToken token) {
@@ -26,17 +26,11 @@ public class UserTokenService {
     public Optional<UserToken> findByToken(long token) {
         return userTokenDao.findById(token);
     }
-    public void deleteByToken(long token) {
-        userTokenDao.delete(token);
-    }
     public List<UserToken> findByTokenType(String tokenType) {
        return (List<UserToken>) userTokenDao.findByTokenType(tokenType);
     }
     public void update(UserToken token){
         userTokenDao.update(token);
-    }
-    public UserToken findByUser(Utilisateur user) {
-        return userTokenDao.findByUser(user.getId());
     }
     public UserToken findByUserAndTokenType(Utilisateur user, String tokenType) {
         return userTokenDao.findByUserAndType(user.getId(), tokenType);

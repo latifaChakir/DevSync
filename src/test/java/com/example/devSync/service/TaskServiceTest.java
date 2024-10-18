@@ -42,14 +42,13 @@ public class TaskServiceTest {
         Utilisateur assignedUser = new Utilisateur();
         assignedUser.setId(1L);
         task.setAssignedTo(assignedUser);
-
         when(userTokenServiceMock.findByUserAndTokenType(assignedUser, "Remplacement")).thenReturn(null);
         when(userTokenServiceMock.findByUserAndTokenType(assignedUser, "Suppression")).thenReturn(null);
 
         taskService.createTask(task);
 
         verify(taskDaoMock, times(1)).save(task);
-        verify(userTokenServiceMock, times(2)).save(any(UserToken.class)); // Verify save called twice for the two tokens
+        verify(userTokenServiceMock, times(2)).save(any(UserToken.class));
     }
 
     @Test

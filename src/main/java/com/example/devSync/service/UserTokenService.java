@@ -9,8 +9,17 @@ import java.util.List;
 import java.util.Optional;
 
 public class UserTokenService {
-    private UserTokenDao userTokenDao=new UserTokenDaoImpl();
-    UtilisateurService utilisateurService=new UtilisateurService();
+    private UserTokenDao userTokenDao;
+    UtilisateurService utilisateurService;
+    public UserTokenService() {
+        this.userTokenDao=new UserTokenDaoImpl();
+        this.utilisateurService=new UtilisateurService();
+    }
+    public UserTokenService(UserTokenDao userTokenDao){
+        this.userTokenDao=userTokenDao;
+        this.utilisateurService=new UtilisateurService();
+    }
+
     public void save(UserToken token) {
         userTokenDao.save(token);
     }

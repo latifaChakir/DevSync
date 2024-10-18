@@ -13,9 +13,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TaskHistoryService {
-    private TaskHistoryDao taskHistoryDao = new TaskHistoryDaoImpl();
-    private TaskService taskService = new TaskService();
-    private UserTokenService userTokenService = new UserTokenService();
+    private TaskHistoryDao taskHistoryDao;
+    private TaskService taskService;
+    private UserTokenService userTokenService;
+    public TaskHistoryService(){
+        taskService = new TaskService();
+        userTokenService = new UserTokenService();
+        taskHistoryDao = new TaskHistoryDaoImpl();
+    }
+    public TaskHistoryService(TaskService taskService, UserTokenService userTokenService){
+        this.taskService = taskService;
+        this.userTokenService = userTokenService;
+        taskHistoryDao = new TaskHistoryDaoImpl();
+    }
 
     //    public void addTaskHistory(TaskHistory taskHistory){
 //        taskHistoryDao.save(taskHistory);

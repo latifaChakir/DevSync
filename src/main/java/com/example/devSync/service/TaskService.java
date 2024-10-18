@@ -17,8 +17,17 @@ import java.util.List;
 import java.util.Map;
 
 public class TaskService {
-    private TaskDao taskDao = new TaskDaoImpl();
-    private UserTokenService userTokenService = new UserTokenService();
+    private TaskDao taskDao;
+    private UserTokenService userTokenService;
+
+    public TaskService(TaskDao taskDao, UserTokenService userToken){
+        this.taskDao = taskDao;
+        this.userTokenService = userToken;
+    }
+    public TaskService(){
+        this.taskDao = new TaskDaoImpl();
+        this.userTokenService = new UserTokenService();
+    }
 
     public void createTask(Task task) {
         taskDao.save(task);

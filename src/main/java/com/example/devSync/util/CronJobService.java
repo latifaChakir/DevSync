@@ -1,5 +1,7 @@
-package com.example.devSync.service;
+package com.example.devSync.util;
 
+import com.example.devSync.service.TaskService;
+import com.example.devSync.service.UserTokenService;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
@@ -69,7 +71,7 @@ public class CronJobService {
 
         Trigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity("taskVerificationTrigger", "group1")
-                .withSchedule(CronScheduleBuilder.cronSchedule("0 0 0 * * ?"))                .build();
+                .withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?"))                .build();
 
         scheduler.scheduleJob(jobDetail, trigger);
         System.out.println("Task verification job scheduled.");

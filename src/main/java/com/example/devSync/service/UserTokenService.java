@@ -15,7 +15,7 @@ public class UserTokenService {
         this.userTokenDao=new UserTokenDaoImpl();
         this.utilisateurService=new UtilisateurService();
     }
-    public UserTokenService(UserTokenDao userTokenDao){
+    public UserTokenService(UserTokenDao userTokenDao, UtilisateurService utilisateurService) {
         this.userTokenDao=userTokenDao;
         this.utilisateurService=new UtilisateurService();
     }

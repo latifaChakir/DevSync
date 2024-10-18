@@ -55,9 +55,7 @@ public class TaskServiceTest {
     void testUpdateTask() {
         Task task = new Task();
         task.setId(1L);
-
         taskService.updateTask(task);
-
         verify(taskDaoMock, times(1)).update(task);
     }
 
@@ -72,11 +70,8 @@ public class TaskServiceTest {
     void testGetTaskById() {
         Task task = new Task();
         task.setId(1L);
-
         when(taskDaoMock.findById(1L)).thenReturn(Optional.of(task));
-
         Task result = taskService.getTaskById(1L);
-
         assertNotNull(result);
         assertEquals(1L, result.getId());
         verify(taskDaoMock, times(1)).findById(1L);
@@ -85,9 +80,7 @@ public class TaskServiceTest {
     @Test
     void testGetAllTasks() {
         when(taskDaoMock.findAll()).thenReturn(Arrays.asList(new Task(), new Task()));
-
         List<Task> tasks = taskService.getAllTasks();
-
         assertEquals(2, tasks.size());
         verify(taskDaoMock, times(1)).findAll();
     }
@@ -95,9 +88,7 @@ public class TaskServiceTest {
     @Test
     void testGetTasksByCreator() {
         when(taskDaoMock.getTasksByCreatorId(1L)).thenReturn(Arrays.asList(new Task(), new Task()));
-
         List<Task> tasks = taskService.getTasksByCreator(1L);
-
         assertEquals(2, tasks.size());
         verify(taskDaoMock, times(1)).getTasksByCreatorId(1L);
     }
@@ -106,9 +97,7 @@ public class TaskServiceTest {
     void testChangeStatus() {
         Task task = new Task();
         task.setId(1L);
-
         taskService.changeStatus(1L, Status.EN_COURS);
-
         verify(taskDaoMock, times(1)).changeStatus(1L, Status.EN_COURS);
     }
 
@@ -117,11 +106,8 @@ public class TaskServiceTest {
         LocalDateTime date = LocalDateTime.now();
         Task overdueTask = new Task();
         overdueTask.setId(1L);
-
         when(taskDaoMock.findOverdueTasks(date)).thenReturn(Arrays.asList(overdueTask));
-
         List<Task> overdueTasks = taskService.findOverdueTasks(date);
-
         assertEquals(1, overdueTasks.size());
         verify(taskDaoMock, times(1)).findOverdueTasks(date);
         verify(taskDaoMock, times(1)).changeStatus(1L, Status.NON_EFFECTUER);
@@ -137,11 +123,8 @@ public class TaskServiceTest {
         task3.setStatus(Status.A_FAIRE);
         Task task4 = new Task();
         task4.setStatus(Status.NON_EFFECTUER);
-
         when(taskDaoMock.getTasksByCreatorId(1L)).thenReturn(Arrays.asList(task1, task2, task3, task4));
-
         var statistics = taskService.calculateStatisticsByCreatorId(1L);
-
         assertEquals(4, statistics.get("totalCreatedTasks"));
         assertEquals(1, statistics.get("completedCreatedTasks"));
         assertEquals(1, statistics.get("inProgressCreatedTasks"));

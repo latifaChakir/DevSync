@@ -1,5 +1,4 @@
 package com.example.devSync.util;
-import com.example.devSync.service.CronJobService;
 import com.example.devSync.service.TaskService;
 import com.example.devSync.service.UserTokenService;
 import jakarta.servlet.ServletContextEvent;

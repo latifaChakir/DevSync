@@ -1,13 +1,11 @@
-package com.example.devSync.service;
+package com.example.devSync.util;
 
-import com.example.devSync.bean.Task;
-import com.example.devSync.bean.enums.Status;
+import com.example.devSync.service.TaskService;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class TaskVerificationJob implements Job {
 
@@ -18,10 +16,10 @@ public class TaskVerificationJob implements Job {
         System.out.println("Starting task verification job");
         try {
             LocalDate currentDate = LocalDate.now();
-            LocalDateTime startOfDay = currentDate.atStartOfDay();  // Ensure this is LocalDateTime
+            LocalDateTime startOfDay = currentDate.atStartOfDay();
 
             try {
-                taskService.findOverdueTasks(startOfDay);  // Pass LocalDateTime
+                taskService.findOverdueTasks(startOfDay);
             } catch (Exception e) {
                 throw new JobExecutionException(e);
             }

@@ -1,4 +1,4 @@
-package com.example.devSync.service;
+package com.example.devSync.util;
 
 import com.example.devSync.bean.TaskHistory;
 import com.example.devSync.bean.Utilisateur;

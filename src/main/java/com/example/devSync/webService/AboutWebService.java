@@ -1,6 +1,4 @@
 package com.example.devSync.webService;
-
-
 import com.example.devSync.bean.UserToken;
 import com.example.devSync.bean.Utilisateur;
 import com.example.devSync.bean.enums.Role;

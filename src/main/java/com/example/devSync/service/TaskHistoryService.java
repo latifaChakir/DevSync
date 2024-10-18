@@ -89,9 +89,6 @@ public class TaskHistoryService {
         taskHistoryDao.update(taskHistory);
 
     }
-    public void updateTaskHistory(TaskHistory taskHistory) {
-        taskHistoryDao.update(taskHistory);
-    }
 
     public TaskHistory getTaskHistoryById(long id) {
         return taskHistoryDao.findById(id).orElse(null);

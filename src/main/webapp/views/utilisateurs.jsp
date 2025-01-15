@@ -15,8 +15,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container-xl">
-    <div class="table-responsive">
+<div class="container-fluid">
+<div class="row ">
+<jsp:include page="sidebar.jsp" />
+    <div class="col-md-10">
+<div class="px-2">
+    <div class="table-responsive mt-2">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
@@ -77,21 +81,10 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <div class="clearfix">
-                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                </ul>
-            </div>
         </div>
     </div>
 </div>
+</div></div>
 <div id="addEmployeeModal" class="modal fade bd-example-modal-lg">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
@@ -140,12 +133,13 @@
         </div>
     </div>
 </div>
+</div>
 <style>
     body {
         color: #566787;
         background: #f5f5f5;
         font-family: 'Varela Round', sans-serif;
-        font-size: 13px;
+        font-size: 15px;
     }
     .table-responsive {
         margin: 30px 0;

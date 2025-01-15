@@ -14,5 +14,71 @@
     <servlet-name>UtilisateurWebService</servlet-name>
     <url-pattern>/utilisateurs</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>LoginWebService</servlet-name>
+    <servlet-class>com.example.devSync.webService.LoginWebService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginWebService</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>TagWebService</servlet-name>
+    <servlet-class>com.example.devSync.webService.TagWebService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TagWebService</servlet-name>
+    <url-pattern>/tags?action=getAll</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>TaskWebService</servlet-name>
+    <servlet-class>com.example.devSync.webService.TaskWebService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TaskWebService</servlet-name>
+    <url-pattern>/tasks</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ProfileWebService</servlet-name>
+    <servlet-class>com.example.devSync.webService.ProfileWebService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfileWebService</servlet-name>
+    <url-pattern>/profil</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>TaskHistoryWebService</servlet-name>
+    <servlet-class>com.example.devSync.webService.TaskHistoryWebService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TaskHistoryWebService</servlet-name>
+    <url-pattern>/taskHistory</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>StatisticWebService</servlet-name>
+    <servlet-class>com.example.devSync.webService.StatisticWebService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StatisticWebService</servlet-name>
+    <url-pattern>/dashboard</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AboutWebService</servlet-name>
+    <servlet-class>com.example.devSync.webService.AboutWebService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AboutWebService</servlet-name>
+    <url-pattern>/aboutMe</url-pattern>
+  </servlet-mapping>
+
+  <listener>
+    <listener-class>com.example.devSync.util.QuartzInitializerListener</listener-class>
+  </listener>
 
 </web-app>

@@ -2,10 +2,7 @@ package com.example.devSync.dao.impl;
 
 import com.example.devSync.bean.Utilisateur;
 import com.example.devSync.dao.UtilisateurDao;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -70,6 +67,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao, AutoCloseable {
 
     @Override
     public void delete(long id) {
+        System.out.println("dfgh");
+        System.out.println(id);
         try (EntityManager entityManager = emf.createEntityManager()) {
             EntityTransaction transaction = entityManager.getTransaction();
             try {
@@ -88,12 +87,16 @@ public class UtilisateurDaoImpl implements UtilisateurDao, AutoCloseable {
         }
     }
 
-    @Override
-    public List<Utilisateur> findByName(String name) {
-        try (EntityManager entityManager = emf.createEntityManager()) {
-            return entityManager.createQuery("SELECT u FROM Utilisateur u WHERE u.nom = :name", Utilisateur.class)
-                    .setParameter("name", name)
-                    .getResultList();
+    public Utilisateur findByUsername(String nomUtilisateur) {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Utilisateur> query = em.createQuery("SELECT u FROM Utilisateur u WHERE u.nomUtilisateur = :nomUtilisateur", Utilisateur.class);
+        query.setParameter("nomUtilisateur", nomUtilisateur);
+        try{
+            return query.getSingleResult();
+        }catch (NoResultException e){
+            return null;
+        }finally {
+            em.close();
         }
     }
 

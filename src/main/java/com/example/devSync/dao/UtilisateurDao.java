@@ -10,5 +10,5 @@ public interface UtilisateurDao {
     public List<Utilisateur> findAll();
     public Utilisateur update(Utilisateur utilisateur);
     public void delete(long id);
-    public List<Utilisateur> findByName(String name);
+    public Utilisateur findByUsername(String userName);
 }

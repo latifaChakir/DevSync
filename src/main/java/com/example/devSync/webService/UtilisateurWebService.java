@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,6 +18,10 @@ import java.util.List;
 public class UtilisateurWebService extends HttpServlet {
     UtilisateurService utilisateurService=new UtilisateurService();
     @Override
+    public void init() throws ServletException {
+        System.out.println("Servlet initialisée.");
+    }
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         try {
@@ -25,14 +30,17 @@ public class UtilisateurWebService extends HttpServlet {
                 Utilisateur utilisateur = utilisateurService.getUtilisateur(utilisateurId).orElse(null);
                 if (utilisateur != null) {
                     request.setAttribute("utilisateur", utilisateur);
-                    request.getRequestDispatcher("/editUtilisateur.jsp").forward(request, response);
+                    request.getRequestDispatcher("/views/editUtilisateur.jsp").forward(request, response);
                 } else {
                     response.sendError(HttpServletResponse.SC_NOT_FOUND, "Utilisateur non trouvé");
                 }
             } else {
+                HttpSession session = request.getSession();
+                Utilisateur currentUser = (Utilisateur) session.getAttribute("currentUser");
                 List<Utilisateur> utilisateursList = utilisateurService.getAllUtilisateurs();
+                request.setAttribute("currentUser", currentUser);
                 request.setAttribute("utilisateursList", utilisateursList);
-                request.getRequestDispatcher("/utilisateurs.jsp").forward(request, response);
+                request.getRequestDispatcher("/views/utilisateurs.jsp").forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,5 +104,10 @@ public class UtilisateurWebService extends HttpServlet {
             res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             res.getWriter().write("Une erreur s'est produite : " + e.getMessage());
         }
+    }
+
+    @Override
+    public void destroy() {
+        System.out.println("Servlet détruite.");
     }
 }

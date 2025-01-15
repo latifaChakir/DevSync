@@ -56,15 +56,19 @@
                                     <form action="tasks?action=changeStatus" method="post" style="display: inline;">
                                         <input type="hidden" name="id" value="${task.id}" />
                                         <div class="d-flex ">
-                                        <select name="status" class="badge m-0 form-control select-status
-                                            <c:if test="${task.status == 'A_FAIRE'}">A_FAIRE</c:if>
-                                            <c:if test="${task.status == 'EN_COURS'}">EN_COURS</c:if>
-                                            <c:if test="${task.status == 'TERMINEE'}">TERMINEE</c:if>">
-                                            <option value="A_FAIRE"  <c:if test="${task.status == 'A_FAIRE'}">selected</c:if>>A_FAIRE</option>
-                                            <option value="EN_COURS" <c:if test="${task.status == 'EN_COURS'}">selected</c:if>>EN_COURS</option>
-                                            <option value="TERMINEE" <c:if test="${task.status == 'TERMINEE'}">selected</c:if>>TERMINEE</option>
-                                        </select>
-                                        <button type="submit" style="border: none"><i class="material-icons" data-toggle="tooltip" title="Soumettre" style="color: green;">check</i>
+                                            <select name="status" class="badge m-0 form-control select-status
+                                                <c:if test="${task.status == 'A_FAIRE'}">A_FAIRE</c:if>
+                                                <c:if test="${task.status == 'EN_COURS'}">EN_COURS</c:if>
+                                                <c:if test="${task.status == 'TERMINEE'}">TERMINEE</c:if>
+                                                <c:if test="${task.status == 'NON_EFFECTUER'}">NON_EFFECTUER</c:if>">
+
+                                                <option value="A_FAIRE" <c:if test="${task.status == 'A_FAIRE'}">selected</c:if>>A_FAIRE</option>
+                                                <option value="EN_COURS" <c:if test="${task.status == 'EN_COURS'}">selected</c:if>>EN_COURS</option>
+                                                <option value="TERMINEE" <c:if test="${task.status == 'TERMINEE'}">selected</c:if>>TERMINEE</option>
+                                                <option value="NON_EFFECTUER" <c:if test="${task.status == 'NON_EFFECTUER'}">selected</c:if>>NON_EFFECTUER</option>
+                                            </select>
+
+                                            <button type="submit" style="border: none"><i class="material-icons" data-toggle="tooltip" title="Soumettre" style="color: green;">check</i>
 
                                         </button>
                                         </div>
@@ -285,6 +289,9 @@
 
     .select-status.TERMINEE {
         background-color: #28a745;
+    }
+    .select-status.NON_EFFECTUER {
+        background-color: RED;
     }
     .section-title {
         font-size: 24px;

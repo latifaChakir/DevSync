@@ -2,6 +2,7 @@ package com.example.devSync.bean;
 
 import com.example.devSync.bean.enums.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "utilisateurs")
@@ -11,6 +12,7 @@ public class Utilisateur {
     private Long id;
 
     @Column(name = "nom_utilisateur",nullable = true, unique = true)
+    @NotBlank(message = "First name is required")
     private String nomUtilisateur;
 
     @Column(name = "mot_de_passe" ,nullable = false)
